@@ -101,11 +101,18 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
         whileTap={{ scale: 0.95 }}
         className={cn(
           "w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-sm transition-all duration-300 relative overflow-hidden",
-          isBestSeller ? "bg-red-600 text-white shadow-lg hover:bg-red-800" : "bg-green-600 text-white shadow-[0_10px_20px_-10px_rgba(168,85,247,0.8)] hover:bg-green-500"
+          isPopular && "bg-purple-500 text-white shadow-[0_10px_20px_-10px_rgba(168,85,247,0.8)] hover:bg-purple-400",
+          isBestSeller && "bg-orange-600 text-white shadow-[0_10px_20px_-10px_rgba(234,88,12,0.8)] hover:bg-orange-500",
+          !isPopular && !isBestSeller && "bg-green-600 text-white shadow-[0_10px_20px_-10px_rgba(34,197,94,0.8)] hover:bg-green-500"
         )}
       >
-        <SiWhatsapp className="w-4 h-4 relative z-10" color="white" />
-        <span className="relative z-10">Contratar</span>
+        {isPopular && <span className="relative z-10 text-purple-800">Contratar</span>}
+        {isBestSeller && <span className="relative z-10 text-orange-900">Contratar</span>}
+        {!isPopular && !isBestSeller && <span className="relative z-10 text-white">Contratar</span>}
+
+        {isPopular && <SiWhatsapp className="w-4 h-4 relative z-10" color="purple-800" />}
+        {isBestSeller && <SiWhatsapp className="w-4 h-4 relative z-10" color="orange" />}
+        {!isPopular && !isBestSeller && <SiWhatsapp className="w-4 h-4 relative z-10" color="white" />}
         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
       </motion.a>
     </motion.div>

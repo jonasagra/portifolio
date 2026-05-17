@@ -115,7 +115,7 @@ export default function App() {
       {/* 1. HERO SECTION */}
       <section
         ref={heroRef}
-        className="relative min-h-[20px] h-[72svh] md:h-screen md:min-h-[680px] w-full flex flex-col items-center justify-center bg-white overflow-hidden"
+        className="relative min-h-[20px] h-[64svh] md:h-screen md:min-h-[680px] w-full flex flex-col items-center justify-center bg-white overflow-hidden"
       >
         <div className="absolute inset-0 flex">
           <div className="w-1/2 h-full bg-black" />
@@ -236,7 +236,7 @@ export default function App() {
       </section>
 
       {/* 3.1 Logotipos de IAs */}
-      <section className="py-24 bg-zinc-950 border-y border-white/5">
+      <section className="py-5 bg-zinc-950 border-y border-white/5">
       <p className="text-zinc-400 text-lg md:text-xl font-medium text-center">
         IAs e mais coisas que utilizo para otimizar <br />e potencializar os projetos.
       </p>
@@ -299,7 +299,7 @@ export default function App() {
               name="Starter"
               price="20,90"
               oldPrice="79,90"
-              variant="popular"
+              variant="bestSeller"
               features={[
                 "1 Página",
                 "Landing Page Responsiva",
@@ -357,14 +357,25 @@ export default function App() {
               ]}
               delay={0.4}
             />
+            <div className="text-zinc-500 text-center text-xs font-light">
+              <p>
+                Planos com desconto são apenas no primeiro pagamento, o valor integral será cobrado a partir do segundo mês.
+                <span className="text-gray-700"> Preços em reais (R$)</span> e válidos apenas para pagamento no Brasil.
+              </p>
+            </div>
           </div>
         </div>
+      </section>
+
+      {/* Section Payments of Mercado Pago */}
+      <section className="">
+
       </section>
 
       {/* FOOTER */}
       <footer className="py-12 border-t border-white/10 text-center">
         <p className="text-zinc-500 font-medium text-sm tracking-widest uppercase">
-          Designed by <span className="text-white">Jonas Agra</span> © 2026
+          Designed by <span className="text-white">Jonas Agra</span> © 2026<br /><span className="text-gray-500 font-normal text-xs">Todos os direitos reservados.</span>
         </p>
       </footer>
     </main>
