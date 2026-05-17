@@ -115,7 +115,7 @@ export default function App() {
       {/* 1. HERO SECTION */}
       <section
         ref={heroRef}
-        className="relative min-h-[640px] h-[86svh] md:h-screen md:min-h-[680px] w-full flex flex-col items-center justify-center bg-white overflow-hidden"
+        className="relative min-h-[20px] h-[72svh] md:h-screen md:min-h-[680px] w-full flex flex-col items-center justify-center bg-white overflow-hidden"
       >
         <div className="absolute inset-0 flex">
           <div className="w-1/2 h-full bg-black" />
@@ -163,7 +163,7 @@ export default function App() {
             <img
               src="/photo.png"
               alt="Jonas Agra"
-              className="block w-full h-auto max-h-[88svh] md:max-h-[94vh] object-contain brightness-110 contrast-125 hero-photo-mask"
+              className="block w-full h-auto max-h-[122svh] md:max-h-[98vh] object-contain brightness-110 contrast-125 hero-photo-mask"
             />
           </motion.div>
         </div>
@@ -206,7 +206,7 @@ export default function App() {
       </section>
 
       {/* 3. LOGO MARQUEE SECTION */}
-      <section className="py-24 bg-zinc-950 border-y border-white/5 space-y-4">
+      <section className="py-5 bg-zinc-950 border-y border-white/5 -space-y-2">
         <LogoMarquee
           items={[
             { name: "WordPress", icon: SiWordpress },

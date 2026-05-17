@@ -65,8 +65,8 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
         <h3 className="text-xl font-bold text-zinc-400 mb-2">{name}</h3>
         <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
           <div className="flex items-center gap-1">
-            <span className="text-sm font-bold text-zinc-500">R$</span>
-            {!isDiscounted && <span className="text-4xl md:text-5xl font-black text-white drop-shadow-md">{price}</span>}
+            <span className="text-sm font-bold text-zinc-500"></span>
+            {!isDiscounted && <span className="text-5xl md:text-5xl font-black text-white mt-1.2">R$ {price}</span>}
             {isDiscounted && (
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
@@ -75,11 +75,11 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
                   </span>
                   <span className="text-sm text-zinc-400 line-through">R$ {oldPrice}</span>
                 </div>
-                <span className="text-3xl md:text-5xl font-black text-white -mt-1">{price}</span>
+                <span className="text-5xl md:text-5xl font-black text-white mt-1">R$ {price}</span>
               </div>
             )}
           </div>
-          <span className="text-sm font-medium text-zinc-500 mt-1 sm:mt-0">/mês</span>
+          <span className="text-sm font-medium text-zinc-500 -mt-1.5">/mês</span>
         </div>
       </div>
 
