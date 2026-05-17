@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Check, MessageCircle } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import { cn, getWhatsAppLink } from "@/src/lib/utils";
 import Badge from "./Badge";
 
@@ -17,7 +18,7 @@ type Props = {
 
 export default function PricingCard({ name, price, oldPrice, features, highlight = false, badgeText = null, variant = "default", delay = 0 }: Props) {
   const isDiscounted = !!oldPrice;
-  
+
   // Corrige o parseFloat para suportar vírgulas do Real Brasileiro
   const parsePrice = (val: string) => parseFloat(val.replace(/\./g, "").replace(",", "."));
   const percentPriceDiscount = isDiscounted && oldPrice ? Math.round(((parsePrice(oldPrice) - parsePrice(price)) / parsePrice(oldPrice)) * 100) : 0;
@@ -41,7 +42,7 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
   if (isPopular) {
     cardStyle = "glass ring-2 ring-purple-500 shadow-[0_0_40px_-10px_rgba(168,85,247,0.4)]";
   } else if (isBestSeller) {
-    cardStyle = "glass ring-2 ring-red-500 shadow-[0_0_40px_-10px_rgba(239,68,68,0.4)]"; // Gradient-like highlight para o Mais Vendido
+    cardStyle = "glass ring-2 ring-orange-500 shadow-[0_0_40px_-10px_rgba(239,68,68,0.4)]"; // Gradient-like highlight para o Mais Vendido
   }
 
   return (
@@ -100,12 +101,10 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
         whileTap={{ scale: 0.95 }}
         className={cn(
           "w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-sm transition-all duration-300 relative overflow-hidden",
-          highlight
-            ? "bg-purple-600 text-white shadow-[0_10px_20px_-10px_rgba(168,85,247,0.8)] hover:bg-purple-500"
-            : "bg-white text-black shadow-lg hover:bg-zinc-200"
+          isBestSeller ? "bg-red-600 text-white shadow-lg hover:bg-red-800" : "bg-green-600 text-white shadow-[0_10px_20px_-10px_rgba(168,85,247,0.8)] hover:bg-green-500"
         )}
       >
-        <MessageCircle className="w-4 h-4 relative z-10" />
+        <SiWhatsapp className="w-4 h-4 relative z-10" color="white" />
         <span className="relative z-10">Contratar</span>
         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
       </motion.a>

@@ -12,14 +12,14 @@ export default function Badge({
   className = "",
 }: BadgeProps) {
   const base =
-    "absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 text-white text-[10px] font-bold uppercase tracking-widest rounded-full";
+    "absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full";
 
   const styles = {
     popular:
-      "bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.6)]",
+      "text-purple-950 bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.6)]",
 
     bestSeller:
-      "bg-gradient-to-r from-red-600 via-red-500 to-pink-500 shadow-[0_0_20px_rgba(239,68,68,0.6)]",
+      "text-orange-950 bg-gradient-to-r from-orange-600 via-orange-500 to-pink-500 shadow-[0_0_20px_rgba(239,68,68,0.6)]",
   };
 
   return (

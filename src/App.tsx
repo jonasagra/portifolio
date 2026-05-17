@@ -272,7 +272,7 @@ export default function App() {
             Community Administrator
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl font-medium mt-6">
-            Eu administro a comunidade da <span className="text-white">Minecraft Wiki</span>. Um site considerado oficial e que contém informações sobre o jogo Minecraft, suas atualizações, mods, mapas, servidores e tudo relacionado ao universo do jogo. O site conta com mais de <span className="text-white font-bold">8 mil páginas</span> e mais de <span className="text-white font-bold">1 milhão de visualizações por mês</span>.
+            Eu administro a comunidade da <a href="http://br.minecraft.wiki" className="text-white font-bold hover:text-blue-500 transition-all duration-200 ease-in-out">Minecraft Wiki</a> no Brasil. Um website gigante e colaborativo que contém informações sobre o jogo Minecraft, suas atualizações, mods, mapas, servidores e tudo relacionado ao universo do jogo. O site conta com mais de <span className="text-white font-bold">8 mil páginas</span> e mais de <span className="text-white font-bold">1 milhão de visualizações por mês</span>.
           </p>
         </div>
         <div className="Socials-Container p-2 mt-10 items-center justify-center">
@@ -299,7 +299,7 @@ export default function App() {
               name="Starter"
               price="20,90"
               oldPrice="79,90"
-              variant="bestSeller"
+              variant="popular"
               features={[
                 "1 Página",
                 "Landing Page Responsiva",
