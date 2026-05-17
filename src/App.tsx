@@ -128,7 +128,7 @@ export default function App() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-[18vw] font-black leading-none text-white tracking-tighter whitespace-nowrap text-center flex items-center justify-center h-full"
-            style={{ fontFamily: '"Helvetica Now", "Helvetica Neue", Helvetica, sans-serif' }}
+            style={{ fontFamily: '"Helvetica Now", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif' }}
           >
             JONAS AGRA
           </motion.h1>
@@ -143,7 +143,7 @@ export default function App() {
           >
             <h2
               className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tighter uppercase italic text-white"
-              style={{ fontFamily: '"Helvetica Now", "Helvetica Neue", Helvetica, sans-serif' }}
+              style={{ fontFamily: '"Helvetica Now", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif' }}
             >
               SOFTWARE ENGINEER
             </h2>
