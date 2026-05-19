@@ -5,6 +5,8 @@ import { SiWhatsapp } from "react-icons/si";
 import { cn, getWhatsAppLink } from "@/src/lib/utils";
 import Badge from "./Badge";
 
+type ValidVariant = "default" | "popular" | "bestSeller" | "discount6Meses";
+
 type Props = {
   name: string;
   price: string;
@@ -12,7 +14,7 @@ type Props = {
   features: string[];
   highlight?: boolean;
   badgeText?: string | null;
-  variant?: "default" | "popular" | "bestSeller";
+  variant?: ValidVariant | ValidVariant[];
   delay?: number;
 };
 
@@ -23,26 +25,31 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
   const parsePrice = (val: string) => parseFloat(val.replace(/\./g, "").replace(",", "."));
   const percentPriceDiscount = isDiscounted && oldPrice ? Math.round(((parsePrice(oldPrice) - parsePrice(price)) / parsePrice(oldPrice)) * 100) : 0;
 
-  // A nova propriedade variant toma conta do design:
-  const isPopular = variant === "popular" || highlight;
-  const isBestSeller = variant === "bestSeller";
+  // A nova propriedade variant toma conta do design suportando multiplas tags:
+  const activeVariants = Array.isArray(variant) ? variant : [variant];
+  const isPopular = activeVariants.includes("popular") || highlight;
+  const isBestSeller = activeVariants.includes("bestSeller");
+  const isDiscount6Meses = activeVariants.includes("discount6Meses");
 
-  // Determina a badge exibida:
-  let computedBadge = badgeText;
-  if (!computedBadge) {
-    if (isPopular) computedBadge = "Mais popular";
-    if (isBestSeller) computedBadge = "Mais vendido";
+  // Array de badges para suportar múltiplos
+  type BadgeConfig = { text: string; variant: "popular" | "bestSeller" | "discount6Meses" };
+  const badges: BadgeConfig[] = [];
+
+  if (badgeText) {
+    badges.push({ text: badgeText, variant: isBestSeller ? "bestSeller" : "popular" });
+  } else {
+    if (isBestSeller) badges.push({ text: "Mais vendido", variant: "bestSeller" });
+    if (isPopular) badges.push({ text: "Mais popular", variant: "popular" });
   }
-
-  // Variante usada no componente da Badge
-  const badgeVariant = isBestSeller ? "bestSeller" : "popular";
 
   // Estilo do Cartão em si:
   let cardStyle = "bg-zinc-900/40 border border-white/5 hover:border-white/20 hover:shadow-2xl hover:bg-zinc-900/60";
-  if (isPopular) {
+  if (isBestSeller) {
+    cardStyle = "glass ring-2 ring-orange-500 shadow-[0_0_40px_-10px_rgba(239,68,68,0.4)]";
+  } else if (isDiscount6Meses) {
+    cardStyle = "glass ring-2 ring-red-500 shadow-[0_0_40px_-10px_rgba(239,68,68,0.4)]";
+  } else if (isPopular) {
     cardStyle = "glass ring-2 ring-purple-500 shadow-[0_0_40px_-10px_rgba(168,85,247,0.4)]";
-  } else if (isBestSeller) {
-    cardStyle = "glass ring-2 ring-orange-500 shadow-[0_0_40px_-10px_rgba(239,68,68,0.4)]"; // Gradient-like highlight para o Mais Vendido
   }
 
   return (
@@ -59,27 +66,35 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
       style={{ transformStyle: "preserve-3d" }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl -z-10 pointer-events-none" />
-      {computedBadge && <Badge text={computedBadge} variant={badgeVariant} />}
+
+      {badges.length > 0 && (
+        <div className="absolute -top-4 left-0 w-full flex justify-center flex-wrap gap-2 px-2 pointer-events-none z-20">
+          {badges.map((b, i) => (
+            <Badge key={i} text={b.text} variant={b.variant} />
+          ))}
+        </div>
+      )}
 
       <div className="mb-8" style={{ transform: "translateZ(30px)" }}>
-        <h3 className="text-xl font-bold text-zinc-400 mb-2">{name}</h3>
-        <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
-          <div className="flex items-center gap-1">
-            <span className="text-sm font-bold text-zinc-500"></span>
-            {!isDiscounted && <span className="text-5xl md:text-5xl font-black text-white mt-1.2">R$ {price}</span>}
-            {isDiscounted && (
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm bg-red-600 rounded-lg px-2 py-1 font-bold">
-                    -{percentPriceDiscount}%
-                  </span>
-                  <span className="text-sm text-zinc-400 line-through">R$ {oldPrice}</span>
-                </div>
-                <span className="text-5xl md:text-5xl font-black text-white mt-1">R$ {price}</span>
-              </div>
-            )}
+        <h3 className="text-xl font-bold text-zinc-400 mb-4">{name}</h3>
+        <div className="flex flex-col gap-2">
+          {isDiscounted && (
+            <div className="flex items-center flex-wrap gap-2">
+              <span className="text-sm bg-red-600 text-white rounded-lg px-2 py-1 font-bold">
+                -{percentPriceDiscount}%
+              </span>
+              <span className="text-sm text-zinc-400 line-through">R$ {oldPrice}</span>
+              {isDiscount6Meses && (
+                <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 bg-red-500/10 border border-red-500/20 px-2 py-1 rounded-full whitespace-nowrap">
+                  Válido por 6 meses
+                </span>
+              )}
+            </div>
+          )}
+          <div className="flex items-baseline gap-1 flex-wrap">
+            <span className="text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-black text-white tracking-tight">R$ {price}</span>
+            <span className="text-sm font-medium text-zinc-500">/mês</span>
           </div>
-          <span className="text-sm font-medium text-zinc-500 -mt-1.5">/mês</span>
         </div>
       </div>
 
@@ -101,18 +116,24 @@ export default function PricingCard({ name, price, oldPrice, features, highlight
         whileTap={{ scale: 0.95 }}
         className={cn(
           "w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-sm transition-all duration-300 relative overflow-hidden",
-          isPopular && "bg-purple-500 text-white shadow-[0_10px_20px_-10px_rgba(168,85,247,0.8)] hover:bg-purple-400",
-          isBestSeller && "bg-orange-600 text-white shadow-[0_10px_20px_-10px_rgba(234,88,12,0.8)] hover:bg-orange-500",
-          !isPopular && !isBestSeller && "bg-green-600 text-white shadow-[0_10px_20px_-10px_rgba(34,197,94,0.8)] hover:bg-green-500"
+          isBestSeller ? "bg-orange-600 text-white shadow-[0_10px_20px_-10px_rgba(234,88,12,0.8)] hover:bg-orange-500" :
+          isDiscount6Meses ? "bg-red-600 text-white shadow-[0_10px_20px_-10px_rgba(239,68,68,0.8)] hover:bg-red-500" :
+          isPopular ? "bg-purple-500 text-white shadow-[0_10px_20px_-10px_rgba(168,85,247,0.8)] hover:bg-purple-400" :
+          "bg-green-600 text-white shadow-[0_10px_20px_-10px_rgba(34,197,94,0.8)] hover:bg-green-500"
         )}
       >
-        {isPopular && <span className="relative z-10 text-purple-800">Contratar</span>}
-        {isBestSeller && <span className="relative z-10 text-orange-900">Contratar</span>}
-        {!isPopular && !isBestSeller && <span className="relative z-10 text-white">Contratar</span>}
+        <span className={cn("relative z-10",
+          isBestSeller ? "text-orange-900" :
+          isPopular ? "text-purple-800" :
+          "text-white"
+        )}>Contratar</span>
 
-        {isPopular && <SiWhatsapp className="w-4 h-4 relative z-10" color="purple-800" />}
-        {isBestSeller && <SiWhatsapp className="w-4 h-4 relative z-10" color="orange" />}
-        {!isPopular && !isBestSeller && <SiWhatsapp className="w-4 h-4 relative z-10" color="white" />}
+        <SiWhatsapp className="w-4 h-4 relative z-10" color={
+          isBestSeller ? "orange" :
+          isPopular ? "purple-800" :
+          "white"
+        } />
+
         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
       </motion.a>
     </motion.div>
