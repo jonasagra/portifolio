@@ -95,7 +95,7 @@ export default function Home() {
           <RevealText className="flex flex-col gap-2 max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-purple-500">About Me</p>
             <h3 className="text-2xl md:text-4xl font-semibold leading-relaxed">
-              Olá, sou <span className="text-white">Jonas Agra</span>, tenho 25 anos, sou um estudante de Engenharia de Software. Entusiasta por tecnologia e desenvolvimento web.
+              Olá, sou <span className="text-white">Jonas Agra</span>, tenho 25 anos, sou um estudante de Engenharia de Software. Entusiasta por tecnologia e desenvolvimento web. No passado, já fiz algumas músicas eletrônicas e ambiente como hobby. Hoje estou no ramo da tecnologia.
             </h3>
           </RevealText>
 
