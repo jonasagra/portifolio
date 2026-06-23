@@ -218,11 +218,13 @@ export default function HomeContent() {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-green-500">Music Producer</p>
           <h2 className="text-4xl md:text-5xl font-bold text-white">Música Eletrônica</h2>
           <p className="text-zinc-400 text-lg md:text-xl font-medium">
-            Produzo música eletrônica desde 2017, com faixas como{' '}
+            Produzi música eletrônica de 2017 a 2023, com faixas como{' '}
             <span className="text-white font-semibold">Cabedelo</span>,{' '}
+            <span className="text-white font-semibold">Sunday a like page</span>,{' '}
             <span className="text-white font-semibold">Chinatown</span> e{' '}
-            <span className="text-white font-semibold">Cave on Hub</span>.
-          </p>
+            <span className="text-white font-semibold">Cave on Hub</span>. Além de outras que você pode conferir no meu{' '}
+            canal do Youtube <a href="https://www.youtube.com/@jonazagra" className="text-white font-bold hover:text-green-500 transition-all duration-200 ease-in-out">aqui</a>
+            </p>
           <a
             href="https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be"
             target="_blank"

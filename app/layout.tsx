@@ -46,6 +46,7 @@ const personJsonLd = {
     'https://x.com/corelakes',
     'https://www.twitch.tv/corelakes',
     'https://youtube.com/@corelakes',
+    'https://www.youtube.com/@jonazagra',
   ],
 };
 
