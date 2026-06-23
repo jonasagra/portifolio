@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import type { IconType } from 'react-icons';
-import { FaAws, FaNodeJs, FaPython, FaReact } from 'react-icons/fa';
+import { FaAws, FaNodeJs, FaPython, FaReact, FaSpotify } from 'react-icons/fa';
 import {
   SiCloudflarepages,
   SiDigitalocean,
@@ -20,7 +20,6 @@ import {
 } from 'react-icons/si';
 import { cn } from '@/lib/utils';
 import { DeepSeek, Lovable, Codex, NotebookLM, NanoBanana, Figma, Cloudflare } from '@lobehub/icons';
-import Plans from './Plans';
 
 type LogoItem = {
   name: string;
@@ -90,26 +89,26 @@ export default function HomeContent() {
           <RevealText className="flex flex-col gap-2 max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-purple-500">About Me</p>
             <h3 className="text-2xl md:text-4xl font-semibold leading-relaxed">
-              Olá, sou <span className="text-white">Jonas Agra</span>, tenho 25 anos, sou um estudante de Engenharia de Software. Entusiasta por tecnologia e desenvolvimento web.
+              Olá, sou <span className="text-white">Jonas Agra</span>, tenho 25 anos, estudante de Engenharia de Software apaixonado por tecnologia, desenvolvimento web e qualidade de software (QA).
             </h3>
           </RevealText>
 
           <RevealText delay={0.2} className="flex flex-col gap-6 ml-auto max-w-2xl text-right">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-500">Service Specialty</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-500">What I Do</p>
             <h4 className="text-xl md:text-3xl font-medium text-zinc-400 leading-relaxed italic">
-              Aqui, eu cuido do seu site, faço manutenção e criação de websites como landing pages e SaaS para gestão de pequenas e médias empresas usando React, Node.js, e um pouco de Python para otimização de dados.
+              Desenvolvo aplicações web — de landing pages a SaaS — com React, Next.js, Node.js e um pouco de Python. Tenho me dedicado a QA e testes, focado em construir software confiável e bem feito.
             </h4>
           </RevealText>
 
           <RevealText delay={0.4} className="flex flex-col items-center gap-4 py-12 text-center">
             <div className="relative group perspective-1000">
               <h5 className="text-5xl md:text-8xl font-black tracking-tighter text-white opacity-40 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:[transform:rotateX(10deg)_scale(1.05)] cursor-default">
-                Managed hosting with me
+                Quality-driven development
               </h5>
               <div className="absolute -inset-10 bg-purple-600/20 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-10 rounded-full" />
             </div>
             <p className="text-zinc-500 font-medium tracking-wide uppercase text-sm mt-4">
-              Hospedagem e manutenção gerenciada por mim.
+              Construo pensando em qualidade, do código aos testes.
             </p>
           </RevealText>
         </div>
@@ -207,12 +206,33 @@ export default function HomeContent() {
         </div>
       </section>
 
-      <Plans />
+      {/* MUSIC SECTION */}
+      <section className="relative z-30 py-24 bg-zinc-950 px-10 overflow-hidden">
+        <div className="max-w-3xl mx-auto flex flex-col items-center gap-6 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-green-500">Music Producer</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white">Música Eletrônica</h2>
+          <p className="text-zinc-400 text-lg md:text-xl font-medium">
+            Produzo música eletrônica desde 2017, com faixas como{' '}
+            <span className="text-white font-semibold">Cabedelo</span>,{' '}
+            <span className="text-white font-semibold">Chinatown</span> e{' '}
+            <span className="text-white font-semibold">Cave on Hub</span>.
+          </p>
+          <a
+            href="https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 rounded-full bg-green-600 px-8 py-4 font-semibold text-white transition-all duration-200 hover:bg-green-500"
+          >
+            <FaSpotify className="h-6 w-6" />
+            Ouça no Spotify
+          </a>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <footer className="py-12 border-t border-white/10 text-center">
         <p className="text-zinc-500 font-medium text-sm">
-          DESIGNED BY <span className="text-white tracking-widest uppercase">Jonas Agra</span> © 2026
+          Criado por <span className="text-white tracking-widest uppercase">Jonas Agra</span> © 2026
           <br />
           <span className="text-gray-500 font-normal text-xs">Todos os direitos reservados.</span>
         </p>
