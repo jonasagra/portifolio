@@ -195,7 +195,7 @@ export default function HomeContent() {
           <p className="text-zinc-400 text-lg md:text-xl font-medium mt-6">
             Minha trajetória no Minecraft começou em 2020 com a{' '}
             <span className="text-white font-bold">Minecraft Interessante</span>, uma página de conteúdo e curiosidades que criei no Facebook e que chegou a mais de{' '}
-            <span className="text-white font-bold">20 mil curtidas</span> antes de ser encerrada. Hoje atuo como administrador e burocrata da wiki sob o pseudônimo{' '}
+            <span className="text-white font-bold">20 mil curtidas</span> antes de ser encerrada em 2021. Hoje atuo como administrador e burocrata da wiki sob o pseudônimo{' '}
             <span className="text-white font-bold">Corelakes</span>.
           </p>
         </div>
