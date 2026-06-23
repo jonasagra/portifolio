@@ -96,7 +96,7 @@ export default function HomeContent() {
           <RevealText delay={0.2} className="flex flex-col gap-6 ml-auto max-w-2xl text-right">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-500">What I Do</p>
             <h4 className="text-xl md:text-3xl font-medium text-zinc-400 leading-relaxed italic">
-              Desenvolvo aplicações web — de landing pages a SaaS — com React, Next.js, Node.js e um pouco de Python. Tenho me dedicado a QA e testes, focado em construir software confiável e bem feito.
+              Desenvolvo aplicações web, de landing pages a SaaS, com React, Next.js, Node.js e um pouco de Python. Tenho me dedicado a QA e testes, focado em construir software confiável e bem feito.
             </h4>
           </RevealText>
 
@@ -191,6 +191,12 @@ export default function HomeContent() {
             no Brasil. Um website gigante e colaborativo que contém informações sobre o jogo Minecraft, suas atualizações, mods, mapas, servidores e tudo relacionado ao universo do jogo. O site conta com mais de{' '}
             <span className="text-white font-bold">8 mil páginas</span> e mais de{' '}
             <span className="text-white font-bold">1 milhão de visualizações por mês</span>.
+          </p>
+          <p className="text-zinc-400 text-lg md:text-xl font-medium mt-6">
+            Minha trajetória no Minecraft começou em 2020 com a{' '}
+            <span className="text-white font-bold">Minecraft Interessante</span>, uma página de conteúdo e curiosidades que criei no Facebook e que chegou a mais de{' '}
+            <span className="text-white font-bold">20 mil curtidas</span> antes de ser encerrada. Hoje atuo como administrador e burocrata da wiki sob o pseudônimo{' '}
+            <span className="text-white font-bold">Corelakes</span>.
           </p>
         </div>
         <div className="Socials-Container p-2 mt-10 items-center justify-center">
