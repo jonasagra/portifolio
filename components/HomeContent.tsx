@@ -209,6 +209,9 @@ export default function HomeContent() {
           <a href="http://namemc.com/profile/Corelakes">
             <img src="/Socials_NameMC.png" alt="NameMC" className="rounded-3xl" />
           </a>
+          <a href="http://namemc.com/profile/Corelakes">
+            <img src="/compass.gif" alt="NameMC" className="3xl" />
+          </a>
         </div>
       </section>
 
@@ -239,15 +242,8 @@ export default function HomeContent() {
 
       {/* FOOTER */}
       <footer className="py-12 border-t border-white/10 text-center">
-        <p className="text-zinc-500 font-medium text-sm">
-          Criado por <span className="text-white tracking-widest uppercase">Jonas Agra</span> © 2026
-          <br />
-          <p className="text-zinc-500 font-medium text-sm">
-          E-mail: <span className="text-gray-500 font-normal">jonas.agra@icloud.com</span>
-          <br />
-          <span className="text-gray-500 font-normal text-xs">Todos os direitos reservados.</span>
-          </p>
-        </p>
+        <p className="text-white font-extrabold text xl uppercase">© 2026 Jonas Agra</p>
+          <p className="text-zinc-500 font-medium text-sm">jonasagrabr@gmail.com</p>
       </footer>
     </main>
   );
