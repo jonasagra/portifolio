@@ -209,8 +209,8 @@ export default function HomeContent() {
           <a href="http://namemc.com/profile/Corelakes">
             <img src="/Socials_NameMC.png" alt="NameMC" className="rounded-3xl" />
           </a>
-          <a href="http://namemc.com/profile/Corelakes">
-            <img src="/compass.gif" alt="NameMC" className="3xl" />
+          <a href="https://corelakes.jonasagra.com.br">
+            <img src="/compass.gif" alt="Website oficial" className="3xl" />
           </a>
         </div>
       </section>
