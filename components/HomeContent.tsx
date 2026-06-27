@@ -243,7 +243,7 @@ export default function HomeContent() {
           Criado por <span className="text-white tracking-widest uppercase">Jonas Agra</span> © 2026
           <br />
           <p className="text-zinc-500 font-medium text-sm">
-          E-mail: <span className="text-gray-500 font-normal text-xs">jnasagra@gmail.com</span>
+          E-mail: <span className="text-gray-500 font-normal">jonas.agra@icloud.com</span>
           <br />
           <span className="text-gray-500 font-normal text-xs">Todos os direitos reservados.</span>
           </p>
