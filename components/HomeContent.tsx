@@ -246,6 +246,7 @@ export default function HomeContent() {
           E-mail: <span className="text-white tracking-widest uppercase">jnasagra@gmail.com</span> © 2026
           <br />
           <span className="text-gray-500 font-normal text-xs">Todos os direitos reservados.</span>
+          </p>
         </p>
       </footer>
     </main>
