@@ -20,6 +20,7 @@ import {
 } from 'react-icons/si';
 import { cn } from '@/lib/utils';
 import { DeepSeek, Lovable, Codex, NotebookLM, NanoBanana, Figma, Cloudflare } from '@lobehub/icons';
+import Footer from '@/components/Footer';
 
 type LogoItem = {
   name: string;
@@ -241,10 +242,7 @@ export default function HomeContent() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-12 border-t border-white/10 text-center">
-        <p className="text-white font-extrabold text xl uppercase">© 2026 Jonas Agra</p>
-          <p className="text-zinc-500 font-medium text-sm">jonasagrabr@gmail.com</p>
-      </footer>
+      <Footer />
     </main>
   );
 }
