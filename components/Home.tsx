@@ -30,6 +30,8 @@ type LogoItem = {
 const HELVETICA =
   '"Helvetica Now", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif';
 
+const PHOTO_H = 'min(76svh, 36rem)';
+
 const LogoMarquee = ({
   items,
   speed = 30,
@@ -86,95 +88,88 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-zinc-950 overflow-x-hidden">
 
-      {/* ── Seção de foto ── */}
-      <section className="relative min-h-[120svh] flex flex-col items-center justify-center overflow-hidden bg-white">
-        {/* fundo dividido preto/branco */}
-        <div className="absolute inset-0 flex">
-          <div className="w-1/2 h-full bg-black" />
-          <div className="w-1/2 h-full bg-white" />
-        </div>
+      <header className="relative">
+        <div className="relative w-full flex justify-center overflow-hidden" style={{ height: PHOTO_H }}>
+          {/* fundo dividido preto/branco */}
+          <div className="absolute inset-0 flex">
+            <div className="w-1/2 h-full bg-black" />
+            <div className="w-1/2 h-full bg-white" />
+          </div>
 
-        {/* JONAS AGRA */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden mix-blend-difference z-0">
+          {/* foto — preenche a altura do container (PHOTO_H) */}
+          <motion.img
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            src="/photo.png"
+            alt="Jonas Agra"
+            className="relative z-[1] h-full w-auto max-w-none object-contain brightness-110 contrast-125 hero-photo-mask"
+          />
+
+          {/* JONAS AGRA — z-0, ATRÁS da foto (z-[1]): o corpo cobre o meio do nome */}
           <motion.h1
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12vw] font-black leading-none text-white tracking-tighter whitespace-nowrap text-center flex items-center justify-center h-full"
-            style={{ fontFamily: HELVETICA }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="absolute inset-x-0 z-0 -translate-y-1/2 text-center pointer-events-none mix-blend-difference text-[12vw] sm:text-[14vw] md:text-[10vw] font-black leading-[0.80] text-white tracking-tighter whitespace-nowrap"
+            style={{ top: `calc(${PHOTO_H} * 0.42)`, fontFamily: HELVETICA }}
           >
             JONAS AGRA
           </motion.h1>
-        </div>
 
-        {/* SOFTWARE ENGINEER */}
-        <div className="absolute inset-x-0 top-1/2 left-0 w-full flex justify-center pointer-events-none z-50 translate-y-[6vw] md:translate-y-[7vw] mix-blend-difference">
+          {/* SOFTWARE ENGINEER + STUDENT — z-[2], NA FRENTE da foto */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-center"
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="absolute inset-x-0 z-[2] -translate-y-1/2 flex flex-col items-center text-center px-4 pointer-events-none mix-blend-difference"
+            style={{ top: `calc(${PHOTO_H} * 0.50)` }}
           >
             <h2
-              className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tighter uppercase italic text-white"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase italic text-white"
               style={{ fontFamily: HELVETICA }}
             >
               SOFTWARE ENGINEER
             </h2>
-            <p className="text-zinc-500 font-medium tracking-wide uppercase text-sm -mt-2">
+            <p className="text-zinc-500 font-medium tracking-wide uppercase text-xs sm:text-sm -mt-1">
               STUDENT
             </p>
           </motion.div>
         </div>
 
-        {/* Foto */}
-        <div className="absolute inset-0 z-10 flex items-end justify-center px-4 pointer-events-none">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative z-20 shrink-0 w-[150vw] sm:w-[min(86vw,40rem)] md:w-[min(72vw,56rem)] lg:w-[min(64vw,64rem)] translate-x-[6vw] md:translate-x-0"
-          >
-            <img
-              src="/photo.png"
-              alt="Jonas Agra"
-              className="block w-full h-auto max-h-[100dvh] md:max-h-[90vh] object-contain brightness-110 contrast-125 hero-photo-mask translate-y-4"
-            />
-          </motion.div>
-        </div>
-      </section>
+        <div className="relative z-[3] bg-zinc-950" style={{ marginTop: `calc(${PHOTO_H} * -0.20)` }}>
+          <section className="px-10 pt-12 pb-20 md:pt-16 md:pb-48 overflow-hidden">
+            <div className="max-w-5xl mx-auto flex flex-col gap-12 md:gap-16">
 
-      {/* INTRO SECTION */}
-      <section className="relative z-30 mt-2 bg-zinc-950 px-10 pt-10 pb-20 md:-mt-8 md:pt-16 md:pb-48 overflow-hidden">
-        <div className="max-w-5xl mx-auto flex flex-col gap-12 md:gap-16">
+              <RevealText className="flex flex-col gap-2 max-w-2xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-purple-500">About Me</p>
+                <h3 className="text-2xl md:text-4xl font-semibold leading-relaxed">
+                  Olá, sou <span className="text-white">Jonas Agra</span>, tenho 25 anos, estudante de Engenharia de Software apaixonado por tecnologia, desenvolvimento web e qualidade de software (QA).
+                </h3>
+              </RevealText>
 
-          <RevealText className="flex flex-col gap-2 max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-purple-500">About Me</p>
-            <h3 className="text-2xl md:text-4xl font-semibold leading-relaxed">
-              Olá, sou <span className="text-white">Jonas Agra</span>, tenho 25 anos, estudante de Engenharia de Software apaixonado por tecnologia, desenvolvimento web e qualidade de software (QA).
-            </h3>
-          </RevealText>
+              <RevealText delay={0.2} className="flex flex-col gap-6 ml-auto max-w-2xl text-right">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-500">What I Do</p>
+                <h4 className="text-xl md:text-3xl font-medium text-zinc-400 leading-relaxed italic">
+                  Desenvolvo aplicações web, de landing pages a SaaS, com React, Next.js, Node.js e um pouco de Python. Tenho me dedicado a QA e testes, focado em construir software confiável e bem feito.
+                </h4>
+              </RevealText>
 
-          <RevealText delay={0.2} className="flex flex-col gap-6 ml-auto max-w-2xl text-right">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-500">What I Do</p>
-            <h4 className="text-xl md:text-3xl font-medium text-zinc-400 leading-relaxed italic">
-              Desenvolvo aplicações web, de landing pages a SaaS, com React, Next.js, Node.js e um pouco de Python. Tenho me dedicado a QA e testes, focado em construir software confiável e bem feito.
-            </h4>
-          </RevealText>
-
-          <RevealText delay={0.4} className="flex flex-col items-center gap-4 py-12 text-center">
-            <div className="relative group perspective-1000">
-              <h5 className="text-5xl md:text-8xl font-black tracking-tighter text-white opacity-40 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:[transform:rotateX(10deg)_scale(1.05)] cursor-default">
-                Quality-driven development
-              </h5>
-              <div className="absolute -inset-10 bg-purple-600/20 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-10 rounded-full" />
+              <RevealText delay={0.4} className="flex flex-col items-center gap-4 py-12 text-center">
+                <div className="relative group perspective-1000">
+                  <h5 className="text-5xl md:text-8xl font-black tracking-tighter text-white opacity-40 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:[transform:rotateX(10deg)_scale(1.05)] cursor-default">
+                    Quality-driven development
+                  </h5>
+                  <div className="absolute -inset-10 bg-purple-600/20 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-10 rounded-full" />
+                </div>
+                <p className="text-zinc-500 font-medium tracking-wide uppercase text-sm mt-4">
+                  Construo pensando em qualidade, do código aos testes.
+                </p>
+              </RevealText>
             </div>
-            <p className="text-zinc-500 font-medium tracking-wide uppercase text-sm mt-4">
-              Construo pensando em qualidade, do código aos testes.
-            </p>
-          </RevealText>
+          </section>
         </div>
-      </section>
+      </header>
 
       {/* LOGO MARQUEE SECTION */}
       <section className="py-5 bg-zinc-950 border-y border-white/5 -space-y-2">
