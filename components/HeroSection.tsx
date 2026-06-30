@@ -5,8 +5,15 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export default function HeroSection() {
   const [visible, setVisible] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     if (visible) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -38,7 +45,7 @@ export default function HeroSection() {
       window.removeEventListener('touchmove', handleTouchMove);
       document.body.style.overflow = 'auto';
     };
-  }, [visible]);
+  }, [visible, mounted]);
 
   // Auto-revelar: se ninguém interagir em 4s (caso de crawlers como o Googlebot,
   // que não rolam nem clicam), a intro some sozinha e libera o conteúdo. Isso
@@ -56,7 +63,7 @@ export default function HeroSection() {
           key="hero"
           exit={{ opacity: 0, filter: 'blur(10px)', scale: 0.95 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white overflow-hidden cursor-pointer"
+          className={`${mounted ? 'fixed' : 'relative'} inset-0 z-50 flex flex-col items-center justify-center bg-white overflow-hidden cursor-pointer`}
           onClick={() => setVisible(false)}
         >
           {/* Split background */}
