@@ -40,6 +40,15 @@ export default function HeroSection() {
     };
   }, [visible]);
 
+  // Auto-revelar: se ninguém interagir em 4s (caso de crawlers como o Googlebot,
+  // que não rolam nem clicam), a intro some sozinha e libera o conteúdo. Isso
+  // garante que o Google renderize/indexe a página de verdade, não só a abertura.
+  useEffect(() => {
+    if (!visible) return;
+    const t = setTimeout(() => setVisible(false), 4000);
+    return () => clearTimeout(t);
+  }, [visible]);
+
   return (
     <AnimatePresence>
       {visible && (
