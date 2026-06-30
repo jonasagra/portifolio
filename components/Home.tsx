@@ -103,7 +103,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.3 }}
             src="/photo.png"
             alt="Jonas Agra"
-            className="relative z-[1] h-full w-auto max-w-none object-contain brightness-110 contrast-125 hero-photo-mask"
+            className="mt-[32vw] ml-[40px] relative z-[1] h-[60%] w-auto max-w-none object-contain brightness-110 contrast-125 hero-photo-mask"
           />
 
           {/* JONAS AGRA — z-0, ATRÁS da foto (z-[1]): o corpo cobre o meio do nome */}
@@ -111,8 +111,8 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="absolute inset-x-0 z-0 -translate-y-1/2 text-center pointer-events-none mix-blend-difference text-[12vw] sm:text-[14vw] md:text-[10vw] font-black leading-[0.80] text-white tracking-tighter whitespace-nowrap"
-            style={{ top: `calc(${PHOTO_H} * 0.42)`, fontFamily: HELVETICA }}
+            className="absolute inset-x-0 z-0 -translate-y-1/2 text-center pointer-events-none mix-blend-difference text-[14vw] sm:text-[14vw] md:text-[10vw] font-black leading-[0.80] text-white tracking-tighter whitespace-nowrap"
+            style={{ top: `calc(${PHOTO_H} * 0.45)`, fontFamily: HELVETICA }}
           >
             JONAS AGRA
           </motion.h1>
@@ -123,7 +123,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="absolute inset-x-0 z-[2] -translate-y-1/2 flex flex-col items-center text-center px-4 pointer-events-none mix-blend-difference"
-            style={{ top: `calc(${PHOTO_H} * 0.50)` }}
+            style={{ top: `calc(${PHOTO_H} * 0.52)` }}
           >
             <h2
               className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase italic text-white"
