@@ -27,6 +27,9 @@ type LogoItem = {
   icon: IconType;
 };
 
+const HELVETICA =
+  '"Helvetica Now", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif';
+
 const LogoMarquee = ({
   items,
   speed = 30,
@@ -79,9 +82,67 @@ const RevealText = ({
   </motion.div>
 );
 
-export default function HomeContent() {
+export default function Home() {
   return (
     <main className="min-h-screen bg-zinc-950 overflow-x-hidden">
+
+      {/* ── Seção de foto ── */}
+      <section className="relative min-h-[120svh] flex flex-col items-center justify-center overflow-hidden bg-white">
+        {/* fundo dividido preto/branco */}
+        <div className="absolute inset-0 flex">
+          <div className="w-1/2 h-full bg-black" />
+          <div className="w-1/2 h-full bg-white" />
+        </div>
+
+        {/* JONAS AGRA */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden mix-blend-difference z-0">
+          <motion.h1
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[12vw] font-black leading-none text-white tracking-tighter whitespace-nowrap text-center flex items-center justify-center h-full"
+            style={{ fontFamily: HELVETICA }}
+          >
+            JONAS AGRA
+          </motion.h1>
+        </div>
+
+        {/* SOFTWARE ENGINEER */}
+        <div className="absolute inset-x-0 top-1/2 left-0 w-full flex justify-center pointer-events-none z-50 translate-y-[6vw] md:translate-y-[7vw] mix-blend-difference">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="text-center"
+          >
+            <h2
+              className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tighter uppercase italic text-white"
+              style={{ fontFamily: HELVETICA }}
+            >
+              SOFTWARE ENGINEER
+            </h2>
+            <p className="text-zinc-500 font-medium tracking-wide uppercase text-sm -mt-2">
+              STUDENT
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Foto */}
+        <div className="absolute inset-0 z-10 flex items-end justify-center px-4 pointer-events-none">
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="relative z-20 shrink-0 w-[150vw] sm:w-[min(86vw,40rem)] md:w-[min(72vw,56rem)] lg:w-[min(64vw,64rem)] translate-x-[6vw] md:translate-x-0"
+          >
+            <img
+              src="/photo.png"
+              alt="Jonas Agra"
+              className="block w-full h-auto max-h-[100dvh] md:max-h-[90vh] object-contain brightness-110 contrast-125 hero-photo-mask translate-y-4"
+            />
+          </motion.div>
+        </div>
+      </section>
 
       {/* INTRO SECTION */}
       <section className="relative z-30 mt-2 bg-zinc-950 px-10 pt-10 pb-20 md:-mt-8 md:pt-16 md:pb-48 overflow-hidden">

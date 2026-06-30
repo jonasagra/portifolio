@@ -1,11 +1,5 @@
-import HeroSection from '@/components/HeroSection';
-import HomeContent from '@/components/HomeContent';
+import Home from '@/components/Home';
 
 export default function Page() {
-  return (
-    <main className="min-h-screen bg-zinc-950 overflow-x-hidden">
-      <HeroSection />
-      <HomeContent />
-    </main>
-  );
+  return <Home />;
 }
