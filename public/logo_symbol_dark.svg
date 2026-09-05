@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="400"
+   height="400"
+   viewBox="0 0 400 400"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="logo_symbol_dark.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1.4283557"
+     inkscape:cx="-5.2507929"
+     inkscape:cy="182.72759"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs1">
+    <rect
+       x="25.203806"
+       y="177.82685"
+       width="247.83743"
+       height="42.706449"
+       id="rect2" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Camada 2" />
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="fill:#ffffff">
+    <path
+       d="m 75.987518,460.24067 v -174.057 l 29.009502,14.50475 29.0095,14.50475 v 87.0285 l 29.0095,-14.50475 29.0095,-14.50475 v -261.0855 l -29.0095,14.50475 -29.0095,14.50475 v 87.0285 L 104.99702,213.65992 75.987518,199.15517 V 83.117165 l 29.009502,14.50475 29.0095,14.504755 29.0095,-14.504755 29.0095,-14.50475 29.0095,-14.504751 29.0095,-14.50475 V 431.23117 l -29.0095,-14.50475 -29.0095,-14.50475 -29.0095,14.50475 -29.0095,14.50475 -29.0095,14.50475 -29.009502,14.50475 z"
+       id="text1-4-8"
+       style="font-size:928.304px;font-family:Cupra;-inkscape-font-specification:Cupra;stroke-width:77.3572"
+       transform="scale(1.24343,0.80422702)"
+       aria-label="J" />
+    <path
+       d="m 107.2565,363.44834 10.89925,-5.44962 10.89925,-5.44963 v -43.597 l -10.89925,5.44963 -10.89925,5.44962 v 43.597 z M 85.458,439.74309 V 298.05284 l 10.89925,5.44963 10.89925,5.44962 10.89925,-5.44962 10.89925,-5.44963 10.89925,-5.44962 10.89925,-5.44963 v 141.69025 l -10.89925,-5.44962 -10.89925,-5.44963 v -54.49625 l -10.89925,5.44963 -10.89925,5.44962 v 54.49625 l -10.89925,5.44963 -10.89925,5.44962 z"
+       id="text1-4"
+       style="font-size:348.776px;font-family:Cupra;-inkscape-font-specification:Cupra;stroke-width:29.0643"
+       transform="scale(1.5555051,0.642878)"
+       aria-label="A" />
+  </g>
+</svg>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import "./globals.css";
 
 const description =
   'Jonas Agra — estudante de Engenharia de Software com foco em QA, desenvolvedor web, produtor de música eletrônica e administrador da Minecraft Wiki Brasil (Corelakes).';
@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   robots: 'index, follow',
   alternates: {
     canonical: '/',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon_dark.svg', media: '(prefers-color-scheme: dark)' },
+      { url: '/favicon_light.svg', media: '(prefers-color-scheme: light)' },
+    ],
   },
   openGraph: {
     title: 'Jonas Agra | Developer',
@@ -50,19 +56,18 @@ const personJsonLd = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <head>
-        <meta name="theme-color" content="#000000" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   );
 }

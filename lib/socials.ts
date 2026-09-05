@@ -1,3 +1,4 @@
+
 import type { IconType } from 'react-icons';
 import {
   FaGithub,
@@ -18,14 +19,14 @@ export type Social = {
   icon: IconType;
 };
 
-export const SOCIALS: Social[] = [
+export const Socials: Social[] = [
   { name: 'WhatsApp', href: 'https://wa.me/5583981306043', icon: FaWhatsapp },
-  { name: 'E-mail',   href: 'mailto:jonasagrabr@gmail.com',                                    icon: FaEnvelope },
-  { name: 'GitHub',    href: 'https://github.com/jonasagra',                                   icon: FaGithub },
-  { name: 'LinkedIn',  href: 'https://www.linkedin.com/in/jonasagra/',                         icon: FaLinkedinIn },
-  { name: 'X',         href: 'https://x.com/jonasagra',                                        icon: FaXTwitter },
-  { name: 'Instagram', href: 'https://instagram.com/jnasagr',                                  icon: FaInstagram },
-  { name: 'YouTube',   href: 'https://youtube.com/jonazagra',                                 icon: FaYoutube },
-  { name: 'Spotify',   href: 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', icon: FaSpotify },
-  { name: 'Facebook',  href: 'https://www.facebook.com/jonasagrabr/',                          icon: FaFacebookF },
+  { name: 'E-mail', href: 'mailto:jonasagrabr@gmail.com', icon: FaEnvelope },
+  { name: 'GitHub', href: 'https://github.com/jonasagra', icon: FaGithub },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/jonasagra/', icon: FaLinkedinIn },
+  { name: 'X', href: 'https://x.com/jonasagra', icon: FaXTwitter },
+  { name: 'Instagram', href: 'https://instagram.com/jnasdev', icon: FaInstagram },
+  { name: 'YouTube', href: 'https://youtube.com/corelakes', icon: FaYoutube },
+  { name: 'Spotify', href: 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', icon: FaSpotify },
+  { name: 'Facebook', href: 'https://www.facebook.com/jonasagrabr/', icon: FaFacebookF },
 ];
