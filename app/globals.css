@@ -85,8 +85,8 @@ body {
 }
 
 .loader-mark img {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   animation: pulse-mark 1.2s ease-in-out infinite alternate;
 }
@@ -135,14 +135,14 @@ body {
 }
 
 .symbol-link img {
-  width: 38px;
-  height: 38px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   transition: transform 0.2s ease;
 }
 
 .symbol-link:hover img {
-  transform: scale(1.08);
+  transform: scale(2.08);
 }
 
 .theme-toggle {
@@ -217,6 +217,29 @@ body {
 .hero-logo {
   position: relative;
   z-index: 2;
+}
+
+.logo-loading {
+  opacity: 0;
+}
+
+.logo-ready {
+  animation: logo-fade-in 1.2s ease-out both;
+}
+
+@keyframes logo-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo {
+    animation: none;
+  }
 }
 
 .hero-title {

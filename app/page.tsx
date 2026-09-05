@@ -44,9 +44,13 @@ export default function Page() {
       <div className="hero" id="inicio">
         <div className="hero-copy">
           <div className="hero-photo">
-            <img src="photo.png" alt="Foto de Jonas Agra" className="hero-image" />
+            {isDark ? (
+              <img src="photo.png" alt="Foto de Jonas Agra" className="hero-image" />
+            ) : (
+              <img src="photo_light.png" alt="Foto de Jonas Agra" className="hero-image" />
+            )}
           </div>
-          <img className="hero-logo" src={isDark ? "/logo_dark.svg" : "/logo_light.svg"} alt="Jonas Agra" />
+          <img className={`hero-logo ${isLoading ? "logo-loading" : "logo-ready"}`} src={isDark ? "/logo_dark.svg" : "/logo_light.svg"} alt="Jonas Agra" />
           <div className="badge">
             <p className="intro">Software Engineer student • Quality Assurance • Content Creator</p>
           </div>
