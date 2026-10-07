@@ -77,11 +77,11 @@ export default function Page() {
               <img src="/Wiki@2x.png" alt="Minecraft Wiki Brasil" className="projects-logos" />
               <p className="project-descriptions">Representative<br /> Administrator</p>
             </a>
-            <a href="https://achadinhos.jonasagra.com.br" target="_blank" rel="noopener noreferrer" className="adj-project-logo">
+            <a href="https://viozen.jonasagra.com.br" target="_blank" rel="noopener noreferrer" className="adj-project-logo">
               {isDark ? (
-                <img src="/logo-w.png" alt="Achadinhos do Jonas (ADJ)" className="projects-logos" />
+                <img src="/viozen-purple.svg" alt="Viozen Store" className="projects-logos" />
               ) : (
-                <img src="/logo-black.svg" alt="Achadinhos do Jonas (ADJ)" className="projects-logos" />
+                <img src="/viozen-dark.svg" alt="Viozen Store" className="projects-logos" />
               )}
               <p className="project-descriptions">Founder</p>
             </a>
