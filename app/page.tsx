@@ -52,11 +52,11 @@ export default function Page() {
           </div>
           <img className={`hero-logo ${isLoading ? "logo-loading" : "logo-ready"}`} src={isDark ? "/logo_dark.svg" : "/logo_light.svg"} alt="Jonas Agra" />
           <div className="badge">
-            <p className="intro">Software Engineer student • Quality Assurance • Content Creator</p>
+            <p className="intro">Developer • Quality Assurance • Content Creator</p>
           </div>
           <div className="separator"></div>
           <h1 className="hero-title">About Me</h1>
-          <p className="summary">I'm a 26-year-old software engineering student from Brazil. I create online content, help manage online communities including Minecraft's, and spend my free time coding. I love React, and figuring out how things work.</p>
+          <p className="summary">I'm a 26-year-old developer from Brazil. I create online content, help manage online communities including Minecraft's, and spend my free time coding. I love React, and figuring out how things work.</p>
           <div className="separator"></div>
           <div className="social-actions" role="navigation">
             {Socials.map((social) => (
