@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Socials } from "@/lib/socials";
 import { MapPin } from "lucide-react";
-import { CreeperIcon } from "@/components/CreeperIcon";
+// import { CreeperIcon } from "@/components/CreeperIcon"; // oculto junto com o link do Minecraft
 import { TechMarquee } from "@/components/TechMarquee";
 
 export default function Page() {
@@ -56,7 +56,7 @@ export default function Page() {
           </div>
           <div className="separator"></div>
           <h1 className="hero-title">About Me</h1>
-          <p className="summary">I'm a 26-year-old developer from Brazil. I create online content, help manage online communities including Minecraft's, and spend my free time coding. I love React, and figuring out how things work.</p>
+          <p className="summary">I'm a 26-year-old developer from Brazil. I create online content, help manage online communities, and spend my free time coding. I love React, and figuring out how things work.</p>
           <div className="separator"></div>
           <div className="social-actions" role="navigation">
             {Socials.map((social) => (
@@ -64,12 +64,15 @@ export default function Page() {
                 <social.icon className="social-icon" />
               </a>
             ))}
+            {/* Oculto: link do Minecraft
             <a href="https://corelakes.jonasagra.com.br" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Minecraft">
               <CreeperIcon className="social-icon" />
             </a>
+            */}
           </div>
           <div className="separator"></div>
             <TechMarquee />
+          {/* Oculto: seção My projects
           <div className="separator"></div>
           <h2 className="hero-title">My projects</h2>
           <div className="projects">
@@ -86,6 +89,7 @@ export default function Page() {
               <p className="project-descriptions">Founder</p>
             </a>
           </div>
+          */}
         </div>
       </div>
 

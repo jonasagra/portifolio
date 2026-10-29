@@ -27,6 +27,6 @@ export const Socials: Social[] = [
   { name: 'X', href: 'https://x.com/jonasagra', icon: FaXTwitter },
   { name: 'Instagram', href: 'https://instagram.com/jnasdev', icon: FaInstagram },
   { name: 'YouTube', href: 'https://youtube.com/corelakes', icon: FaYoutube },
-  { name: 'Spotify', href: 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', icon: FaSpotify },
+  // Oculto: { name: 'Spotify', href: 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', icon: FaSpotify },
   { name: 'Facebook', href: 'https://www.facebook.com/jonasagrabr/', icon: FaFacebookF },
 ];
