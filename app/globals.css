@@ -601,7 +601,6 @@ footer {
   --stone: calc(var(--strip) * 2);
   --grass-line: calc(var(--strip) * 0.205);
   --strip-top: calc(var(--horizon, 600px) - var(--grass-line));
-  --cloud-w: 1400px;
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -616,8 +615,7 @@ footer {
 
 .mc-sky,
 .mc-ground,
-.mc-stone,
-.mc-clouds {
+.mc-stone {
   position: absolute;
   left: 0;
   right: 0;
@@ -655,22 +653,52 @@ footer {
   background-image: url("/minecraft/stone-night.webp");
 }
 
-/* Nuvens por cima do fundo, terminando um pouco acima da grama */
-.mc-clouds {
+/* Sol, lua e nuvens em blocos, só na área do céu (acima da grama) */
+.mc-cloud-layer {
+  --cpx: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
   top: 0;
-  height: calc(var(--horizon, 600px) - var(--grass-line) * 0.15);
-  background: url("/minecraft/clouds.webp") repeat-x left bottom / var(--cloud-w) auto;
-  animation: mc-clouds-drift 180s linear infinite;
+  height: calc(var(--horizon, 600px) - 24px);
+  overflow: hidden;
 }
 
-.theme-dark .mc-clouds {
-  filter: brightness(0.32) saturate(0.8);
-  opacity: 0.75;
+.mc-celestial {
+  position: absolute;
+  top: 70px;
+  right: 10%;
+  width: 128px;
+  height: 128px;
+  image-rendering: pixelated;
 }
 
-@keyframes mc-clouds-drift {
-  from { background-position-x: 0; }
-  to { background-position-x: var(--cloud-w); }
+.mc-celestial.is-moon {
+  width: 72px;
+  height: 72px;
+  top: 96px;
+  right: calc(10% + 28px);
+  filter: drop-shadow(0 0 24px rgba(200, 215, 255, 0.35));
+}
+
+.mc-cloud {
+  position: absolute;
+  left: 0;
+  width: calc(var(--cw) * var(--cpx));
+  height: auto;
+  image-rendering: pixelated;
+  animation: mc-cloud-drift linear infinite;
+  will-change: transform;
+}
+
+.theme-dark .mc-cloud {
+  filter: brightness(0.38) saturate(0.6);
+  opacity: 0.55;
+}
+
+@keyframes mc-cloud-drift {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(100vw); }
 }
 
 .tab-minecraft .hero-title,
@@ -690,9 +718,12 @@ footer {
 }
 
 .hero-photo-skin {
+  --skin-w: min(420px, 85%);
+  --logo-h: calc(min(560px, 100%) * 0.1745);
   overflow: visible;
   border-radius: 0;
-  margin-bottom: -1rem;
+  /* corta as pernas (28% de baixo) e o logo cobre a cintura, como a foto na aba principal */
+  margin-bottom: calc(-1 * (0.28 * var(--skin-w) + 0.87 * var(--logo-h)));
 }
 
 .hero-photo-skin::after {
@@ -701,6 +732,7 @@ footer {
 
 .hero-skin {
   width: min(420px, 85%);
+  clip-path: inset(-80px -80px 28% -80px);
   height: auto;
   aspect-ratio: 1;
   object-fit: contain;
@@ -714,6 +746,10 @@ footer {
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
 
+.theme-dark .hero-logo-corelakes {
+  filter: drop-shadow(0 0 1.5px rgba(255, 236, 170, 0.55)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+}
+
 .tab-minecraft footer {
   color: #e4e4e7;
   background: rgba(0, 0, 0, 0.45);
@@ -725,12 +761,29 @@ footer {
 @media (max-width: 640px) {
   .mc-world {
     --strip: 360px;
-    --cloud-w: 900px;
+  }
+
+  .mc-cloud-layer {
+    --cpx: 5px;
+  }
+
+  .mc-celestial {
+    width: 88px;
+    height: 88px;
+    top: 64px;
+    right: 4%;
+  }
+
+  .mc-celestial.is-moon {
+    width: 48px;
+    height: 48px;
+    top: 84px;
+    right: calc(4% + 20px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mc-clouds {
+  .mc-cloud {
     animation: none;
   }
 }
@@ -885,14 +938,19 @@ footer {
   box-shadow: 0 30px 60px -30px rgba(130, 10, 209, 0.7);
 }
 
+.nu-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
 .nu-block-logo {
-  position: absolute;
-  right: -40px;
-  bottom: -50px;
-  width: 260px;
-  opacity: 0.18;
+  width: clamp(64px, 12vw, 88px);
+  height: auto;
+  flex-shrink: 0;
   filter: brightness(0) invert(1);
-  pointer-events: none;
 }
 
 .nu-block-eyebrow {

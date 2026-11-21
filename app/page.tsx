@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Socials, MinecraftSocials, LINKEDIN_URL } from "@/lib/socials";
+import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/socials";
 import { ChevronRight, MapPin } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 
@@ -11,6 +11,16 @@ const TABS: { id: TabId; label: string; icon: (isDark: boolean) => string; pixel
   { id: "main", label: "Jonas Agra", icon: (isDark) => (isDark ? "/logo_symbol_dark.svg" : "/logo_symbol_light.svg") },
   { id: "minecraft", label: "Minecraft", icon: () => "/minecraft/grass-block.png", pixel: true },
   { id: "nubank", label: "Nubank", icon: () => "/nubank/nubank-logo.svg" },
+];
+
+// Nuvens em blocos (largura em px da arte; cada px é ampliado no CSS)
+const MC_CLOUDS = [
+  { name: "cloud-3", w: 36, top: "8%", dur: 140, delay: -20 },
+  { name: "cloud-1", w: 30, top: "22%", dur: 110, delay: -75 },
+  { name: "cloud-4", w: 12, top: "40%", dur: 90, delay: -10 },
+  { name: "cloud-2", w: 18, top: "56%", dur: 120, delay: -95 },
+  { name: "cloud-1", w: 30, top: "4%", dur: 160, delay: -120 },
+  { name: "cloud-4", w: 12, top: "66%", dur: 100, delay: -55 },
 ];
 
 function tabFromHash(): TabId {
@@ -42,7 +52,7 @@ export default function Page() {
     };
   }, []);
 
-  // Na aba Minecraft, a linha da grama acompanha o logo do Corelakes (o logo "pisa" na grama)
+  // Na aba Minecraft, a linha da grama fica na base do logo do Corelakes (o logo "pisa" na grama)
   useEffect(() => {
     if (activeTab !== "minecraft") return;
     const measure = () => {
@@ -50,7 +60,7 @@ export default function Page() {
       const logo = corelakesLogoRef.current;
       if (!shell || !logo) return;
       const top = logo.getBoundingClientRect().top - shell.getBoundingClientRect().top;
-      setHorizon(Math.round(top + logo.offsetHeight * 0.3));
+      setHorizon(Math.round(top + logo.offsetHeight * 0.88));
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -92,7 +102,18 @@ export default function Page() {
           <div className="mc-sky" />
           <div className="mc-ground" />
           <div className="mc-stone" />
-          <div className="mc-clouds" />
+          <div className="mc-cloud-layer">
+            <img src={isDark ? "/minecraft/moon.png" : "/minecraft/sun.png"} alt="" className={`mc-celestial ${isDark ? "is-moon" : "is-sun"}`} />
+            {MC_CLOUDS.map((cloud, i) => (
+              <img
+                key={i}
+                src={`/minecraft/${cloud.name}.png`}
+                alt=""
+                className="mc-cloud"
+                style={{ "--cw": cloud.w, top: cloud.top, animationDuration: `${cloud.dur}s`, animationDelay: `${cloud.delay}s` } as CSSProperties}
+              />
+            ))}
+          </div>
         </div>
       )}
 
@@ -176,8 +197,10 @@ export default function Page() {
                 <h1 className="hero-title">About Me</h1>
                 <p className="summary">Since September 2024 I&apos;ve been a Collections Specialist at Nubank, outsourced through AeC. Alongside the job, I&apos;m studying Quality Assurance and I keep building things for the web.</p>
                 <section className="nu-block" aria-label="Experiência no Nubank">
-                  <img src="/nubank/nubank-logo.svg" alt="" className="nu-block-logo" />
-                  <p className="nu-block-eyebrow">Since Sep 2024 · Indirect contract</p>
+                  <div className="nu-block-head">
+                    <p className="nu-block-eyebrow">Since Sep 2024 · Indirect contract</p>
+                    <img src="/nubank/nubank-logo.svg" alt="Nubank" className="nu-block-logo" />
+                  </div>
                   <h2 className="nu-block-title">Collections Specialist at&nbsp;Nubank</h2>
                   <p className="nu-block-text">Outsourced through AeC, working in the collections team of Nubank, a Brazilian digital bank.</p>
                   <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="nu-button">
@@ -187,7 +210,7 @@ export default function Page() {
                 </section>
                 <div className="separator"></div>
                 <div className="social-actions" role="navigation">
-                  {Socials.map((social) => (
+                  {NubankSocials.map((social) => (
                     <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={social.name}>
                       <social.icon className="social-icon" />
                     </a>
