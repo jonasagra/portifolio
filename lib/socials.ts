@@ -1,5 +1,9 @@
 
 import type { IconType } from 'react-icons';
+import type { ComponentType } from 'react';
+import { SiWikipedia } from 'react-icons/si';
+import { TbBrandMinecraft } from 'react-icons/tb';
+import { CreeperIcon } from '@/components/CreeperIcon';
 import {
   FaGithub,
   FaLinkedinIn,
@@ -16,7 +20,7 @@ import {
 export type Social = {
   name: string;
   href: string;
-  icon: IconType;
+  icon: IconType | ComponentType<{ className?: string }>;
 };
 
 export const Socials: Social[] = [
@@ -29,4 +33,14 @@ export const Socials: Social[] = [
   { name: 'YouTube', href: 'https://youtube.com/corelakes', icon: FaYoutube },
   // Oculto: { name: 'Spotify', href: 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', icon: FaSpotify },
   { name: 'Facebook', href: 'https://www.facebook.com/jonasagrabr/', icon: FaFacebookF },
+];
+
+// Links exibidos na aba Minecraft (Corelakes)
+export const MinecraftSocials: Social[] = [
+  { name: 'Corelakes', href: 'https://corelakes.jonasagra.com.br', icon: CreeperIcon },
+  { name: 'Minecraft Wiki', href: 'https://br.minecraft.wiki/User:Corelakes', icon: SiWikipedia },
+  { name: 'NameMC', href: 'https://namemc.com/profile/Corelakes', icon: TbBrandMinecraft },
+  { name: 'YouTube', href: 'https://youtube.com/@corelakes', icon: FaYoutube },
+  { name: 'Twitch', href: 'https://www.twitch.tv/corelakes', icon: FaTwitch },
+  { name: 'X', href: 'https://x.com/corelakes', icon: FaXTwitter },
 ];

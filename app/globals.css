@@ -489,6 +489,146 @@ body {
 }
 
 
+/* Tab Switcher */
+.tab-switcher {
+  display: inline-flex;
+  align-self: center;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 3;
+}
+
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.55;
+  filter: grayscale(60%);
+  transition: background-color 0.2s ease, opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.tab-button:hover {
+  opacity: 0.9;
+  filter: none;
+}
+
+.tab-button.is-active {
+  background: var(--bg-subtle);
+  opacity: 1;
+  filter: none;
+}
+
+.tab-button:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.tab-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  object-fit: contain;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+}
+
+.tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: tab-fade-in 0.35s ease-out both;
+}
+
+@keyframes tab-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-panel {
+    animation: none;
+  }
+}
+
+/* Minecraft Tab */
+.tab-minecraft {
+  /* Coloque o fundo em public/minecraft/background.webp; o gradiente é o fallback */
+  background-image:
+    var(--mc-scrim),
+    url("/minecraft/background.webp"),
+    linear-gradient(to bottom, #6fb3ff 0%, #a9d4ff 55%, #5d9b3a 55%, #5d9b3a 62%, #7a5232 62%, #5a3b22 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.theme-dark.tab-minecraft {
+  --mc-scrim: linear-gradient(to bottom, rgba(9, 9, 11, 0.35), rgba(9, 9, 11, 0.8));
+  --bg-elevated: rgba(9, 9, 11, 0.55);
+  --bg-subtle: rgba(93, 155, 58, 0.85);
+  --fg-muted: #e4e4e7;
+  --fg-subtle: #d4d4d8;
+  --border-subtle: rgba(255, 255, 255, 0.18);
+}
+
+.theme-light.tab-minecraft {
+  --mc-scrim: linear-gradient(to bottom, rgba(250, 250, 250, 0.3), rgba(250, 250, 250, 0.82));
+  --bg-elevated: rgba(255, 255, 255, 0.7);
+  --bg-subtle: rgba(126, 200, 80, 0.9);
+  --border-subtle: rgba(0, 0, 0, 0.15);
+}
+
+.hero-photo-skin {
+  overflow: visible;
+  border-radius: 0;
+  margin-bottom: -1rem;
+}
+
+.hero-photo-skin::after {
+  display: none;
+}
+
+.hero-skin {
+  width: min(420px, 85%);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45));
+}
+
+.hero-logo-corelakes {
+  width: min(560px, 100%);
+  height: auto;
+  align-self: center;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.tab-minecraft footer {
+  background: var(--bg-elevated);
+  max-width: none;
+  padding-left: max(2.9rem, calc((100% - 1200px) / 2 + 2.9rem));
+  padding-right: max(2.9rem, calc((100% - 1200px) / 2 + 2.9rem));
+}
+
 /* Footer */
 footer {
   width: 100%;
