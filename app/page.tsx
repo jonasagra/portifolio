@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Socials, MinecraftSocials } from "@/lib/socials";
 import { MapPin } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 
-type TabId = "main" | "minecraft";
+type TabId = "main" | "minecraft" | "nubank";
 
 const TABS: { id: TabId; label: string; icon: (isDark: boolean) => string; pixel?: boolean }[] = [
   { id: "main", label: "Jonas Agra", icon: (isDark) => (isDark ? "/logo_symbol_dark.svg" : "/logo_symbol_light.svg") },
   { id: "minecraft", label: "Minecraft", icon: () => "/minecraft/grass-block.png", pixel: true },
+  { id: "nubank", label: "Nubank", icon: () => "/nubank/nubank-logo.svg" },
 ];
 
 function tabFromHash(): TabId {
@@ -21,6 +22,9 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
   const [isDark, setIsDark] = useState(true);
   const [activeTab, setActiveTab] = useState<TabId>("main");
+  const [horizon, setHorizon] = useState<number | null>(null);
+  const shellRef = useRef<HTMLElement>(null);
+  const corelakesLogoRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme");
@@ -38,6 +42,28 @@ export default function Page() {
     };
   }, []);
 
+  // Na aba Minecraft, a linha da grama acompanha o logo do Corelakes (o logo "pisa" na grama)
+  useEffect(() => {
+    if (activeTab !== "minecraft") return;
+    const measure = () => {
+      const shell = shellRef.current;
+      const logo = corelakesLogoRef.current;
+      if (!shell || !logo) return;
+      const top = logo.getBoundingClientRect().top - shell.getBoundingClientRect().top;
+      setHorizon(Math.round(top + logo.offsetHeight * 0.3));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (shellRef.current) observer.observe(shellRef.current);
+    if (corelakesLogoRef.current) observer.observe(corelakesLogoRef.current);
+    // mede de novo quando a animação de entrada da aba termina
+    const settle = window.setTimeout(measure, 400);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(settle);
+    };
+  }, [activeTab]);
+
   function toggleTheme() {
     const nextTheme = !isDark;
     setIsDark(nextTheme);
@@ -50,14 +76,38 @@ export default function Page() {
     window.history.replaceState(null, "", url);
   }
 
-  const isMinecraft = activeTab === "minecraft";
+  const footerName = activeTab === "minecraft" ? "Corelakes" : "Jonas Agra";
 
   return (
-    <main className={`page-shell ${isDark ? "theme-dark" : "theme-light"} ${isMinecraft ? "tab-minecraft" : "tab-main"}`}>
+    <main ref={shellRef} className={`page-shell ${isDark ? "theme-dark" : "theme-light"} tab-${activeTab}`}>
       {isLoading && (
         <div className="loader" role="status" aria-label="Carregando página">
           <div className="loader-mark"><img src={isDark ? "/logo_symbol_dark.svg" : "/logo_symbol_light.svg"} alt="" /></div>
           <div className="spinner" />
+        </div>
+      )}
+
+      {activeTab === "minecraft" && (
+        <div className="mc-world" aria-hidden="true" style={horizon !== null ? ({ "--horizon": `${horizon}px` } as CSSProperties) : undefined}>
+          <div className="mc-sky">
+            <div className="mc-celestial" />
+            <div className="mc-cloud mc-cloud-1" />
+            <div className="mc-cloud mc-cloud-2" />
+            <div className="mc-cloud mc-cloud-3" />
+          </div>
+          <div className="mc-grass" />
+          <div className="mc-dirt" />
+        </div>
+      )}
+
+      {activeTab === "nubank" && (
+        <div className="nu-decor" aria-hidden="true">
+          <div className="nu-orb nu-orb-1" />
+          <div className="nu-orb nu-orb-2" />
+          <div className="nu-orb nu-orb-3" />
+          <div className="nu-grid" />
+          <img src="/nubank/nubank-logo.svg" alt="" className="nu-watermark nu-watermark-1" />
+          <img src="/nubank/nubank-logo.svg" alt="" className="nu-watermark nu-watermark-2" />
         </div>
       )}
 
@@ -80,7 +130,7 @@ export default function Page() {
                 aria-controls="tab-panel"
                 aria-label={tab.label}
                 title={tab.label}
-                className={`tab-button ${activeTab === tab.id ? "is-active" : ""}`}
+                className={`tab-button tab-button-${tab.id} ${activeTab === tab.id ? "is-active" : ""}`}
                 onClick={() => selectTab(tab.id)}
               >
                 <img src={tab.icon(isDark)} alt="" className={`tab-icon ${tab.pixel ? "pixelated" : ""}`} />
@@ -89,12 +139,17 @@ export default function Page() {
           </div>
 
           <div id="tab-panel" role="tabpanel" aria-labelledby={`tab-${activeTab}`} className="tab-panel" key={activeTab}>
-            {isMinecraft ? (
+            {activeTab === "minecraft" && (
               <>
                 <div className="hero-photo hero-photo-skin">
                   <img src="/minecraft/skin.webp" alt="Skin de Minecraft do Corelakes" className="hero-skin" />
                 </div>
-                <img className={`hero-logo hero-logo-corelakes ${isLoading ? "logo-loading" : "logo-ready"}`} src="/minecraft/corelakes-logo.webp" alt="Corelakes" />
+                <img
+                  ref={corelakesLogoRef}
+                  className={`hero-logo hero-logo-corelakes ${isLoading ? "logo-loading" : "logo-ready"}`}
+                  src="/minecraft/corelakes-logo.webp"
+                  alt="Corelakes"
+                />
                 <div className="badge">
                   <p className="intro">Minecraft Wiki • Content Creator • Streamer</p>
                 </div>
@@ -110,7 +165,40 @@ export default function Page() {
                   ))}
                 </div>
               </>
-            ) : (
+            )}
+
+            {activeTab === "nubank" && (
+              <>
+                <div className="hero-photo">
+                  <img src={isDark ? "photo.png" : "photo_light.png"} alt="Foto de Jonas Agra" className="hero-image" />
+                </div>
+                <div className={`hero-logo nu-logo ${isLoading ? "logo-loading" : "logo-ready"}`} role="img" aria-label="Jonas Agra" />
+                <div className="badge">
+                  <p className="intro">Collections Specialist • Nubank</p>
+                </div>
+                <div className="separator"></div>
+                <h1 className="hero-title">About Me</h1>
+                <p className="summary">I work as a Collections Specialist on Nubank&apos;s collections team, outsourced through AIC&apos;s call center. Day to day, I talk with customers about overdue payments and help them find a way to get back on track.</p>
+                <div className="nu-card">
+                  <img src="/nubank/nubank-logo.svg" alt="Nubank" className="nu-card-logo" />
+                  <div className="nu-card-text">
+                    <strong>Collections Specialist</strong>
+                    <span>Nubank · Collections</span>
+                    <span className="nu-card-sub">Outsourced via AIC · Call center</span>
+                  </div>
+                </div>
+                <div className="separator"></div>
+                <div className="social-actions" role="navigation">
+                  {Socials.map((social) => (
+                    <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={social.name}>
+                      <social.icon className="social-icon" />
+                    </a>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "main" && (
               <>
                 <div className="hero-photo">
                   {isDark ? (
@@ -143,7 +231,7 @@ export default function Page() {
       </div>
 
       <footer>
-        <span>© {new Date().getFullYear()} • {isMinecraft ? "Corelakes" : "Jonas Agra"}</span>
+        <span>© {new Date().getFullYear()} • {footerName}</span>
         <span><MapPin className="footer-pin" />João Pessoa, BR</span>
       </footer>
     </main>

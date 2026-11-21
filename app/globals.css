@@ -569,32 +569,163 @@ body {
   }
 }
 
+/* Layering: decorative backgrounds sit behind content */
+.topbar,
+.hero,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
 /* Minecraft Tab */
 .tab-minecraft {
-  /* Coloque o fundo em public/minecraft/background.webp; o gradiente é o fallback */
-  background-image:
-    var(--mc-scrim),
-    url("/minecraft/background.webp"),
-    linear-gradient(to bottom, #6fb3ff 0%, #a9d4ff 55%, #5d9b3a 55%, #5d9b3a 62%, #7a5232 62%, #5a3b22 100%);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #5c3f28;
+  --mc-text: #ffffff;
+  --mc-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
+  --border-subtle: rgba(255, 255, 255, 0.25);
 }
 
 .theme-dark.tab-minecraft {
-  --mc-scrim: linear-gradient(to bottom, rgba(9, 9, 11, 0.35), rgba(9, 9, 11, 0.8));
   --bg-elevated: rgba(9, 9, 11, 0.55);
-  --bg-subtle: rgba(93, 155, 58, 0.85);
-  --fg-muted: #e4e4e7;
-  --fg-subtle: #d4d4d8;
-  --border-subtle: rgba(255, 255, 255, 0.18);
+  --bg-subtle: #4f8a2c;
 }
 
 .theme-light.tab-minecraft {
-  --mc-scrim: linear-gradient(to bottom, rgba(250, 250, 250, 0.3), rgba(250, 250, 250, 0.82));
   --bg-elevated: rgba(255, 255, 255, 0.7);
-  --bg-subtle: rgba(126, 200, 80, 0.9);
-  --border-subtle: rgba(0, 0, 0, 0.15);
+  --bg-subtle: #7ec850;
+}
+
+.mc-world {
+  --block: 64px;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mc-sky,
+.mc-grass,
+.mc-dirt {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.mc-sky {
+  top: 0;
+  height: var(--horizon, 600px);
+  background: linear-gradient(to bottom, #5fa8ff 0%, #9fd0ff 70%, #c9e6ff 100%);
+  overflow: hidden;
+}
+
+.theme-dark .mc-sky {
+  background:
+    radial-gradient(1.5px 1.5px at 24px 36px, #fff 99%, transparent),
+    radial-gradient(1.5px 1.5px at 130px 90px, #fff 99%, transparent),
+    radial-gradient(1px 1px at 80px 150px, #dfe6ff 99%, transparent),
+    radial-gradient(2px 2px at 190px 20px, #fff 99%, transparent),
+    radial-gradient(1px 1px at 60px 210px, #c7d2fe 99%, transparent),
+    linear-gradient(to bottom, #050816 0%, #0d1638 65%, #1b2a5c 100%);
+  background-size: 230px 240px, 230px 240px, 230px 240px, 230px 240px, 230px 240px, 100% 100%;
+}
+
+.mc-celestial {
+  position: absolute;
+  top: 9%;
+  right: 12%;
+  width: 72px;
+  height: 72px;
+  background: #fff3a0;
+  box-shadow: 0 0 0 10px rgba(255, 243, 160, 0.35), 0 0 60px 20px rgba(255, 230, 120, 0.45);
+}
+
+.theme-dark .mc-celestial {
+  width: 60px;
+  height: 60px;
+  background:
+    linear-gradient(#c3c9d6, #c3c9d6) 12px 14px / 12px 12px no-repeat,
+    linear-gradient(#c3c9d6, #c3c9d6) 34px 34px / 10px 10px no-repeat,
+    #eef1f7;
+  box-shadow: 0 0 40px 10px rgba(200, 215, 255, 0.25);
+}
+
+.mc-cloud {
+  position: absolute;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  animation: mc-cloud-drift linear infinite;
+}
+
+.mc-cloud::before {
+  content: "";
+  position: absolute;
+  left: 22%;
+  top: -18px;
+  width: 45%;
+  height: 18px;
+  background: inherit;
+}
+
+.mc-cloud-1 { top: 12%; width: 180px; left: -200px; animation-duration: 95s; }
+.mc-cloud-2 { top: 26%; width: 130px; left: -200px; animation-duration: 130s; animation-delay: -60s; }
+.mc-cloud-3 { top: 6%; width: 230px; left: -260px; animation-duration: 160s; animation-delay: -110s; }
+
+.theme-dark .mc-cloud {
+  background: rgba(120, 135, 175, 0.22);
+}
+
+@keyframes mc-cloud-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 300px)); }
+}
+
+.mc-grass {
+  top: var(--horizon, 600px);
+  height: var(--block);
+  background: url("/minecraft/grass-side.png") repeat-x left top / var(--block) var(--block);
+  image-rendering: pixelated;
+}
+
+.mc-dirt {
+  top: calc(var(--horizon, 600px) + var(--block));
+  bottom: 0;
+  background: url("/minecraft/dirt.png") repeat left top / var(--block) var(--block);
+  image-rendering: pixelated;
+}
+
+/* Escurece a terra para o texto ficar legível */
+.mc-dirt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.5));
+}
+
+/* Noite: grama e terra mais escuras */
+.theme-dark .mc-grass,
+.theme-dark .mc-dirt {
+  filter: brightness(0.5) saturate(0.85);
+}
+
+.theme-dark .mc-dirt::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.55));
+}
+
+.tab-minecraft .hero-title,
+.tab-minecraft .summary,
+.tab-minecraft .badge .intro {
+  color: var(--mc-text);
+  text-shadow: var(--mc-shadow);
+}
+
+.tab-minecraft .social-icon {
+  color: var(--mc-text);
+  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.55));
+}
+
+.tab-minecraft .social-link:hover .social-icon {
+  transform: translateY(-2px);
 }
 
 .hero-photo-skin {
@@ -623,10 +754,181 @@ body {
 }
 
 .tab-minecraft footer {
-  background: var(--bg-elevated);
+  color: #e4e4e7;
+  background: rgba(0, 0, 0, 0.45);
   max-width: none;
   padding-left: max(2.9rem, calc((100% - 1200px) / 2 + 2.9rem));
   padding-right: max(2.9rem, calc((100% - 1200px) / 2 + 2.9rem));
+}
+
+@media (max-width: 640px) {
+  .mc-world {
+    --block: 48px;
+  }
+
+  .mc-celestial {
+    width: 52px;
+    height: 52px;
+    right: 8%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-cloud {
+    animation: none;
+  }
+}
+
+/* Nubank Tab */
+.theme-dark.tab-nubank {
+  --bg: #12021f;
+  --photo-fade: #12021f;
+  --bg-elevated: rgba(46, 10, 76, 0.65);
+  --bg-subtle: #820ad1;
+  --fg: #f6edff;
+  --fg-muted: #dcc5f3;
+  --fg-subtle: #a98bc8;
+  --border: rgba(186, 104, 255, 0.28);
+  --border-subtle: rgba(186, 104, 255, 0.2);
+  --nu-logo-fill: linear-gradient(135deg, #f1e4ff 0%, #c084fc 45%, #9d2fe6 100%);
+  --nu-orb-opacity: 0.55;
+  --nu-dot: rgba(186, 104, 255, 0.22);
+  --nu-watermark-opacity: 0.07;
+}
+
+.theme-light.tab-nubank {
+  --bg: #f8f1ff;
+  --photo-fade: #f8f1ff;
+  --bg-elevated: rgba(255, 255, 255, 0.75);
+  --bg-subtle: #820ad1;
+  --fg: #26063f;
+  --fg-muted: #4a1a70;
+  --fg-subtle: #7d5a9c;
+  --border: rgba(130, 10, 209, 0.2);
+  --border-subtle: rgba(130, 10, 209, 0.15);
+  --nu-logo-fill: linear-gradient(135deg, #b45cf0 0%, #820ad1 50%, #4c0677 100%);
+  --nu-orb-opacity: 0.3;
+  --nu-dot: rgba(130, 10, 209, 0.14);
+  --nu-watermark-opacity: 0.06;
+}
+
+.tab-nubank .theme-toggle,
+.tab-nubank .badge .intro {
+  color: #ffffff;
+}
+
+.tab-nubank .tab-button-nubank.is-active {
+  background: #ffffff;
+}
+
+.tab-nubank .social-link:hover .social-icon {
+  color: #b45cf0;
+  transform: translateY(-2px);
+}
+
+.nu-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nu-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9d2fe6 0%, rgba(130, 10, 209, 0) 70%);
+  opacity: var(--nu-orb-opacity);
+  filter: blur(20px);
+  animation: nu-float 14s ease-in-out infinite alternate;
+}
+
+.nu-orb-1 { width: 560px; height: 560px; top: -180px; left: -200px; }
+.nu-orb-2 { width: 620px; height: 620px; top: 38%; right: -280px; animation-delay: -5s; }
+.nu-orb-3 { width: 460px; height: 460px; bottom: -120px; left: 8%; animation-delay: -9s; }
+
+@keyframes nu-float {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(40px, -30px) scale(1.08); }
+}
+
+.nu-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--nu-dot) 1.2px, transparent 1.6px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+
+.nu-watermark {
+  position: absolute;
+  opacity: var(--nu-watermark-opacity);
+}
+
+.nu-watermark-1 { width: 420px; top: 6%; right: -90px; transform: rotate(-12deg); }
+.nu-watermark-2 { width: 360px; bottom: 8%; left: -110px; transform: rotate(10deg); }
+
+.nu-logo {
+  width: 100%;
+  aspect-ratio: 1920 / 1080;
+  background: var(--nu-logo-fill);
+  -webkit-mask: url("/logo_dark.svg") center / contain no-repeat;
+  mask: url("/logo_dark.svg") center / contain no-repeat;
+}
+
+.nu-card {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  align-self: center;
+  width: min(440px, 100%);
+  padding: 1rem 1.25rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 40px -18px rgba(130, 10, 209, 0.55);
+}
+
+.nu-card-logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  padding: 0.9rem 0.6rem;
+  border-radius: 16px;
+  background: #ffffff;
+  object-fit: contain;
+}
+
+.nu-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+}
+
+.nu-card-text strong {
+  font-size: 1.05rem;
+  color: var(--fg);
+}
+
+.nu-card-sub {
+  font-size: 0.8rem;
+  color: var(--fg-subtle);
+}
+
+@media (max-width: 640px) {
+  .nu-watermark-1 { width: 260px; }
+  .nu-watermark-2 { width: 220px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nu-orb {
+    animation: none;
+  }
 }
 
 /* Footer */
