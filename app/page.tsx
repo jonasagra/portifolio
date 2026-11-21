@@ -15,13 +15,16 @@ const TABS: { id: TabId; label: string; icon: (isDark: boolean) => string; pixel
 
 // Nuvens em blocos (largura em px da arte; cada px é ampliado no CSS)
 const MC_CLOUDS = [
-  { name: "cloud-3", w: 36, top: "8%", dur: 140, delay: -20 },
-  { name: "cloud-1", w: 30, top: "22%", dur: 110, delay: -75 },
-  { name: "cloud-4", w: 12, top: "40%", dur: 90, delay: -10 },
-  { name: "cloud-2", w: 18, top: "56%", dur: 120, delay: -95 },
-  { name: "cloud-1", w: 30, top: "4%", dur: 160, delay: -120 },
-  { name: "cloud-4", w: 12, top: "66%", dur: 100, delay: -55 },
+  { name: "cloud-3", w: 36, top: "8%", dur: 95, delay: -20 },
+  { name: "cloud-1", w: 30, top: "22%", dur: 75, delay: -50 },
+  { name: "cloud-4", w: 12, top: "40%", dur: 60, delay: -10 },
+  { name: "cloud-2", w: 18, top: "56%", dur: 85, delay: -65 },
+  { name: "cloud-1", w: 30, top: "4%", dur: 110, delay: -80 },
+  { name: "cloud-4", w: 12, top: "66%", dur: 70, delay: -40 },
 ];
+
+// Contagem de edições na Minecraft Wiki em português (app/api/wiki-edits consulta a API do MediaWiki)
+const WIKI_EDITCOUNT_API = "/api/wiki-edits";
 
 function tabFromHash(): TabId {
   const hash = window.location.hash.replace("#", "");
@@ -33,6 +36,7 @@ export default function Page() {
   const [isDark, setIsDark] = useState(true);
   const [activeTab, setActiveTab] = useState<TabId>("main");
   const [horizon, setHorizon] = useState<number | null>(null);
+  const [wikiEdits, setWikiEdits] = useState<number | null>(null);
   const shellRef = useRef<HTMLElement>(null);
   const corelakesLogoRef = useRef<HTMLImageElement>(null);
 
@@ -51,6 +55,21 @@ export default function Page() {
       window.removeEventListener("hashchange", onHashChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (activeTab !== "minecraft" || wikiEdits !== null) return;
+    const controller = new AbortController();
+    fetch(WIKI_EDITCOUNT_API, { signal: controller.signal })
+      .then((res) => res.json())
+      .then((data) => {
+        const count = data?.editcount;
+        if (typeof count === "number") setWikiEdits(count);
+      })
+      .catch(() => {
+        /* sem rede: o texto usa o valor aproximado */
+      });
+    return () => controller.abort();
+  }, [activeTab, wikiEdits]);
 
   // Na aba Minecraft, a linha da grama fica na base do logo do Corelakes (o logo "pisa" na grama)
   useEffect(() => {
@@ -172,7 +191,7 @@ export default function Page() {
                 </div>
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
-                <p className="summary">In the Minecraft world I go by Corelakes. I&apos;ve been editing the Portuguese Minecraft Wiki since 2020, with more than 16,500 edits, and I&apos;ve been one of its administrators and bureaucrats since 2023.</p>
+                <p className="summary">In the Minecraft world I go by Corelakes. I&apos;ve been editing the Portuguese Minecraft Wiki since 2020, with {wikiEdits !== null ? (<a className="wiki-edits" href="https://pt.minecraft.wiki/w/Especial:Contribui%C3%A7%C3%B5es/Corelakes" target="_blank" rel="noopener noreferrer">{wikiEdits.toLocaleString("en-US")} edits</a>) : "more than 16,500 edits"}, and I&apos;ve been one of its administrators and bureaucrats since 2023.</p>
                 <div className="separator"></div>
                 <div className="social-actions" role="navigation">
                   {MinecraftSocials.map((social) => (

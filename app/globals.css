@@ -392,9 +392,8 @@ body {
 .summary {
   font-size: clamp(0.95rem, 1vw, 1.05rem);
   line-height: 1.65;
-  justify-content: center;
   color: var(--fg-muted);
-  display:flex;
+  display: block;
   text-align: center;
 }
 
@@ -666,10 +665,11 @@ footer {
 
 .mc-celestial {
   position: absolute;
-  top: 70px;
-  right: 10%;
-  width: 128px;
-  height: 128px;
+  z-index: 1; /* fica na frente das nuvens */
+  top: -12px;
+  right: calc(10% - 80px);
+  width: 288px;
+  height: 288px;
   image-rendering: pixelated;
 }
 
@@ -711,6 +711,14 @@ footer {
 .tab-minecraft .social-icon {
   color: var(--mc-text);
   filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.55));
+}
+
+.wiki-edits {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
 .tab-minecraft .social-link:hover .social-icon {
@@ -768,10 +776,10 @@ footer {
   }
 
   .mc-celestial {
-    width: 88px;
-    height: 88px;
-    top: 64px;
-    right: 4%;
+    width: 192px;
+    height: 192px;
+    top: 12px;
+    right: calc(4% - 52px);
   }
 
   .mc-celestial.is-moon {
