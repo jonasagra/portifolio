@@ -23,11 +23,13 @@ export type Social = {
   icon: IconType | ComponentType<{ className?: string }>;
 };
 
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/jonasagra/';
+
 export const Socials: Social[] = [
   { name: 'WhatsApp', href: 'https://wa.me/5583981306043', icon: FaWhatsapp },
   { name: 'E-mail', href: 'mailto:jonasagrabr@gmail.com', icon: FaEnvelope },
   { name: 'GitHub', href: 'https://github.com/jonasagra', icon: FaGithub },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/jonasagra/', icon: FaLinkedinIn },
+  { name: 'LinkedIn', href: LINKEDIN_URL, icon: FaLinkedinIn },
   { name: 'X', href: 'https://x.com/jonasagra', icon: FaXTwitter },
   { name: 'Instagram', href: 'https://instagram.com/jnasdev', icon: FaInstagram },
   { name: 'YouTube', href: 'https://youtube.com/corelakes', icon: FaYoutube },

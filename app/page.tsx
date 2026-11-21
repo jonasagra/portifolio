@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Socials, MinecraftSocials } from "@/lib/socials";
-import { MapPin } from "lucide-react";
+import { Socials, MinecraftSocials, LINKEDIN_URL } from "@/lib/socials";
+import { ChevronRight, MapPin } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 
 type TabId = "main" | "minecraft" | "nubank";
@@ -89,14 +89,10 @@ export default function Page() {
 
       {activeTab === "minecraft" && (
         <div className="mc-world" aria-hidden="true" style={horizon !== null ? ({ "--horizon": `${horizon}px` } as CSSProperties) : undefined}>
-          <div className="mc-sky">
-            <div className="mc-celestial" />
-            <div className="mc-cloud mc-cloud-1" />
-            <div className="mc-cloud mc-cloud-2" />
-            <div className="mc-cloud mc-cloud-3" />
-          </div>
-          <div className="mc-grass" />
-          <div className="mc-dirt" />
+          <div className="mc-sky" />
+          <div className="mc-ground" />
+          <div className="mc-stone" />
+          <div className="mc-clouds" />
         </div>
       )}
 
@@ -151,11 +147,11 @@ export default function Page() {
                   alt="Corelakes"
                 />
                 <div className="badge">
-                  <p className="intro">Minecraft Wiki • Content Creator • Streamer</p>
+                  <p className="intro">Admin &amp; Bureaucrat @ Minecraft Wiki</p>
                 </div>
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
-                <p className="summary">In the Minecraft world I go by Corelakes. I help run the Brazilian Minecraft Wiki, create content and stream on Twitch and YouTube.</p>
+                <p className="summary">In the Minecraft world I go by Corelakes. I&apos;ve been editing the Portuguese Minecraft Wiki since 2020, with more than 16,500 edits, and I&apos;ve been one of its administrators and bureaucrats since 2023.</p>
                 <div className="separator"></div>
                 <div className="social-actions" role="navigation">
                   {MinecraftSocials.map((social) => (
@@ -174,19 +170,21 @@ export default function Page() {
                 </div>
                 <div className={`hero-logo nu-logo ${isLoading ? "logo-loading" : "logo-ready"}`} role="img" aria-label="Jonas Agra" />
                 <div className="badge">
-                  <p className="intro">Collections Specialist • Nubank</p>
+                  <p className="intro">Collections Specialist @ Nubank</p>
                 </div>
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
-                <p className="summary">I work as a Collections Specialist on Nubank&apos;s collections team, outsourced through AIC&apos;s call center. Day to day, I talk with customers about overdue payments and help them find a way to get back on track.</p>
-                <div className="nu-card">
-                  <img src="/nubank/nubank-logo.svg" alt="Nubank" className="nu-card-logo" />
-                  <div className="nu-card-text">
-                    <strong>Collections Specialist</strong>
-                    <span>Nubank · Collections</span>
-                    <span className="nu-card-sub">Outsourced via AIC · Call center</span>
-                  </div>
-                </div>
+                <p className="summary">Since September 2024 I&apos;ve been a Collections Specialist at Nubank, outsourced through AeC. Alongside the job, I&apos;m studying Quality Assurance and I keep building things for the web.</p>
+                <section className="nu-block" aria-label="Experiência no Nubank">
+                  <img src="/nubank/nubank-logo.svg" alt="" className="nu-block-logo" />
+                  <p className="nu-block-eyebrow">Since Sep 2024 · Indirect contract</p>
+                  <h2 className="nu-block-title">Collections Specialist at&nbsp;Nubank</h2>
+                  <p className="nu-block-text">Outsourced through AeC, working in the collections team of Nubank, a Brazilian digital bank.</p>
+                  <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="nu-button">
+                    View on LinkedIn
+                    <ChevronRight className="nu-button-icon" aria-hidden="true" />
+                  </a>
+                </section>
                 <div className="separator"></div>
                 <div className="social-actions" role="navigation">
                   {Socials.map((social) => (
@@ -209,11 +207,11 @@ export default function Page() {
                 </div>
                 <img className={`hero-logo ${isLoading ? "logo-loading" : "logo-ready"}`} src={isDark ? "/logo_dark.svg" : "/logo_light.svg"} alt="Jonas Agra" />
                 <div className="badge">
-                  <p className="intro">Developer • Quality Assurance • Content Creator</p>
+                  <p className="intro">QA Student • Web Developer • JavaScript &amp; React</p>
                 </div>
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
-                <p className="summary">I'm a 26-year-old developer from Brazil. I create online content, help manage online communities, and spend my free time coding. I love React, and figuring out how things work.</p>
+                <p className="summary">I&apos;m a 26-year-old developer from João Pessoa, Brazil, moving into Quality Assurance. I already do manual testing and bug reporting with Jira, and I&apos;m learning Cypress and TypeScript. My strongest side is the web: JavaScript and React.</p>
                 <div className="separator"></div>
                 <div className="social-actions" role="navigation">
                   {Socials.map((social) => (

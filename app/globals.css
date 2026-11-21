@@ -596,120 +596,81 @@ footer {
 }
 
 .mc-world {
-  --block: 64px;
+  /* faixa do chão: 936px na origem (80 px de arte); pedra: 1200px (160 px de arte) — mesmo tamanho de pixel */
+  --strip: 480px;
+  --stone: calc(var(--strip) * 2);
+  --grass-line: calc(var(--strip) * 0.205);
+  --strip-top: calc(var(--horizon, 600px) - var(--grass-line));
+  --cloud-w: 1400px;
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  background-color: #58b5fe;
+}
+
+.theme-dark .mc-world {
+  background-color: #0e1d28;
 }
 
 .mc-sky,
-.mc-grass,
-.mc-dirt {
+.mc-ground,
+.mc-stone,
+.mc-clouds {
   position: absolute;
   left: 0;
   right: 0;
 }
 
+/* Céu acima da faixa: cor igual ao topo da imagem; estrelas à noite */
 .mc-sky {
   top: 0;
-  height: var(--horizon, 600px);
-  background: linear-gradient(to bottom, #5fa8ff 0%, #9fd0ff 70%, #c9e6ff 100%);
-  overflow: hidden;
+  height: var(--strip-top);
 }
 
 .theme-dark .mc-sky {
-  background:
-    radial-gradient(1.5px 1.5px at 24px 36px, #fff 99%, transparent),
-    radial-gradient(1.5px 1.5px at 130px 90px, #fff 99%, transparent),
-    radial-gradient(1px 1px at 80px 150px, #dfe6ff 99%, transparent),
-    radial-gradient(2px 2px at 190px 20px, #fff 99%, transparent),
-    radial-gradient(1px 1px at 60px 210px, #c7d2fe 99%, transparent),
-    linear-gradient(to bottom, #050816 0%, #0d1638 65%, #1b2a5c 100%);
-  background-size: 230px 240px, 230px 240px, 230px 240px, 230px 240px, 230px 240px, 100% 100%;
+  background: url("/minecraft/stars.png") repeat left top / 380px 260px;
 }
 
-.mc-celestial {
-  position: absolute;
-  top: 9%;
-  right: 12%;
-  width: 72px;
-  height: 72px;
-  background: #fff3a0;
-  box-shadow: 0 0 0 10px rgba(255, 243, 160, 0.35), 0 0 60px 20px rgba(255, 230, 120, 0.45);
-}
-
-.theme-dark .mc-celestial {
-  width: 60px;
-  height: 60px;
-  background:
-    linear-gradient(#c3c9d6, #c3c9d6) 12px 14px / 12px 12px no-repeat,
-    linear-gradient(#c3c9d6, #c3c9d6) 34px 34px / 10px 10px no-repeat,
-    #eef1f7;
-  box-shadow: 0 0 40px 10px rgba(200, 215, 255, 0.25);
-}
-
-.mc-cloud {
-  position: absolute;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.92);
-  animation: mc-cloud-drift linear infinite;
-}
-
-.mc-cloud::before {
-  content: "";
-  position: absolute;
-  left: 22%;
-  top: -18px;
-  width: 45%;
-  height: 18px;
-  background: inherit;
-}
-
-.mc-cloud-1 { top: 12%; width: 180px; left: -200px; animation-duration: 95s; }
-.mc-cloud-2 { top: 26%; width: 130px; left: -200px; animation-duration: 130s; animation-delay: -60s; }
-.mc-cloud-3 { top: 6%; width: 230px; left: -260px; animation-duration: 160s; animation-delay: -110s; }
-
-.theme-dark .mc-cloud {
-  background: rgba(120, 135, 175, 0.22);
-}
-
-@keyframes mc-cloud-drift {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(100vw + 300px)); }
-}
-
-.mc-grass {
-  top: var(--horizon, 600px);
-  height: var(--block);
-  background: url("/minecraft/grass-side.png") repeat-x left top / var(--block) var(--block);
+.mc-ground {
+  top: var(--strip-top);
+  height: var(--strip);
+  background: url("/minecraft/ground-day.webp") repeat-x left top / var(--strip) var(--strip);
   image-rendering: pixelated;
 }
 
-.mc-dirt {
-  top: calc(var(--horizon, 600px) + var(--block));
+.theme-dark .mc-ground {
+  background-image: url("/minecraft/ground-night.webp");
+}
+
+.mc-stone {
+  top: calc(var(--strip-top) + var(--strip) - 1px);
   bottom: 0;
-  background: url("/minecraft/dirt.png") repeat left top / var(--block) var(--block);
+  background: url("/minecraft/stone-day.webp") repeat left top / var(--stone) var(--stone);
   image-rendering: pixelated;
 }
 
-/* Escurece a terra para o texto ficar legível */
-.mc-dirt::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.5));
+.theme-dark .mc-stone {
+  background-image: url("/minecraft/stone-night.webp");
 }
 
-/* Noite: grama e terra mais escuras */
-.theme-dark .mc-grass,
-.theme-dark .mc-dirt {
-  filter: brightness(0.5) saturate(0.85);
+/* Nuvens por cima do fundo, terminando um pouco acima da grama */
+.mc-clouds {
+  top: 0;
+  height: calc(var(--horizon, 600px) - var(--grass-line) * 0.15);
+  background: url("/minecraft/clouds.webp") repeat-x left bottom / var(--cloud-w) auto;
+  animation: mc-clouds-drift 180s linear infinite;
 }
 
-.theme-dark .mc-dirt::after {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.55));
+.theme-dark .mc-clouds {
+  filter: brightness(0.32) saturate(0.8);
+  opacity: 0.75;
+}
+
+@keyframes mc-clouds-drift {
+  from { background-position-x: 0; }
+  to { background-position-x: var(--cloud-w); }
 }
 
 .tab-minecraft .hero-title,
@@ -763,18 +724,13 @@ footer {
 
 @media (max-width: 640px) {
   .mc-world {
-    --block: 48px;
-  }
-
-  .mc-celestial {
-    width: 52px;
-    height: 52px;
-    right: 8%;
+    --strip: 360px;
+    --cloud-w: 900px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mc-cloud {
+  .mc-clouds {
     animation: none;
   }
 }
@@ -877,47 +833,122 @@ footer {
   mask: url("/logo_dark.svg") center / contain no-repeat;
 }
 
-.nu-card {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  align-self: center;
-  width: min(440px, 100%);
-  padding: 1rem 1.25rem;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--bg-elevated);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 18px 40px -18px rgba(130, 10, 209, 0.55);
+/* Elementos no estilo do nubank.com.br: títulos 600 com letras juntas, pílulas, blocos roxos */
+.tab-nubank {
+  --nu-purple: #820ad1;
+  --nu-purple-bright: #8d0de3;
+  --nu-ink: #1e002f;
 }
 
-.nu-card-logo {
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
-  padding: 0.9rem 0.6rem;
-  border-radius: 16px;
-  background: #ffffff;
-  object-fit: contain;
+.tab-nubank .hero-title {
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
-.nu-card-text {
+.theme-light.tab-nubank .hero-title {
+  color: var(--nu-purple-bright);
+}
+
+.tab-nubank .summary {
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+}
+
+.tab-nubank .badge {
+  background: var(--nu-purple);
+  padding: 0.55rem 1.1rem;
+}
+
+.tab-nubank .badge .intro {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.tab-nubank .theme-toggle {
+  background: var(--nu-purple);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.nu-block {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  font-size: 0.9rem;
-  color: var(--fg-muted);
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 0.75rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border-radius: 28px;
+  background: var(--nu-purple-bright);
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 30px 60px -30px rgba(130, 10, 209, 0.7);
 }
 
-.nu-card-text strong {
-  font-size: 1.05rem;
-  color: var(--fg);
+.nu-block-logo {
+  position: absolute;
+  right: -40px;
+  bottom: -50px;
+  width: 260px;
+  opacity: 0.18;
+  filter: brightness(0) invert(1);
+  pointer-events: none;
 }
 
-.nu-card-sub {
+.nu-block-eyebrow {
+  margin: 0;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
   font-size: 0.8rem;
-  color: var(--fg-subtle);
+  font-weight: 600;
+}
+
+.nu-block-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.nu-block-text {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.nu-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.25rem 0.85rem 1.6rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: var(--nu-purple);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nu-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -10px rgba(30, 0, 47, 0.6);
+}
+
+.nu-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.nu-button-icon {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 @media (max-width: 640px) {

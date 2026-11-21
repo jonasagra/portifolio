@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import "./globals.css";
 
 const description =
-  'Jonas Agra — desenvolvedor independente de João Pessoa (PB), entusiasta de programação e desenvolvimento web.';
+  'Jonas Agra (Corelakes) — estudante de QA e desenvolvedor web de João Pessoa (PB), com foco em JavaScript e React. Collections Specialist no Nubank via AeC e administrador da Minecraft Wiki em português.';
 // Antigo (oculto): 'Jonas Agra — estudante de Engenharia de Software com foco em QA, desenvolvedor web, produtor de música eletrônica e administrador da Minecraft Wiki Brasil (Corelakes).'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jonasagra.com.br'),
-  title: 'Jonas Agra | Developer',
+  title: 'Jonas Agra | QA & Web Developer',
   description,
-  keywords: ['Jonas Agra', 'Corelakes', 'developer', 'desenvolvedor', 'desenvolvedor independente', 'programação', 'desenvolvimento web', 'João Pessoa'],
+  keywords: ['Jonas Agra', 'Corelakes', 'QA', 'Quality Assurance', 'testes manuais', 'desenvolvedor web', 'JavaScript', 'React', 'Minecraft Wiki', 'João Pessoa'],
   // Antigas (ocultas): 'QA', 'software', 'minecraft', 'minecraft wiki', 'música eletrônica', 'engenharia de software'
   authors: [{ name: 'Jonas Agra' }],
   robots: 'index, follow',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Jonas Agra | Developer',
+    title: 'Jonas Agra | QA & Web Developer',
     description,
     url: 'https://jonasagra.com.br',
     siteName: 'Jonas Agra',
@@ -38,15 +38,15 @@ const personJsonLd = {
   name: 'Jonas Agra',
   alternateName: 'Corelakes',
   url: 'https://jonasagra.com.br',
-  jobTitle: 'Desenvolvedor independente', // antigo: 'Estudante de Engenharia de Software'
+  jobTitle: 'Estudante de QA e desenvolvedor web',
   address: { '@type': 'PostalAddress', addressLocality: 'João Pessoa', addressRegion: 'PB', addressCountry: 'BR' },
   description,
   sameAs: [
     // 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', // oculto
     'https://github.com/jonasagra',
-    // 'https://br.minecraft.wiki/User:Corelakes', // oculto
-    // 'https://corelakes.jonasagra.com.br', // oculto
-    // 'https://namemc.com/profile/Corelakes', // oculto
+    'https://br.minecraft.wiki/User:Corelakes',
+    'https://corelakes.jonasagra.com.br',
+    'https://namemc.com/profile/Corelakes',
     'https://instagram.com/jnasagr',
     'https://www.linkedin.com/in/jonasagra/',
     // 'https://music.amazon.com.br/artists/B0925P28GL/jonas-agra', // oculto
