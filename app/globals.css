@@ -578,6 +578,7 @@ footer {
 
 /* Minecraft Tab */
 .tab-minecraft {
+  font-family: var(--font-minecraft), var(--font-sans);
   background-color: #5c3f28;
   --mc-text: #ffffff;
   --mc-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
@@ -665,7 +666,6 @@ footer {
 
 .mc-celestial {
   position: absolute;
-  z-index: 1; /* fica na frente das nuvens */
   top: -12px;
   right: calc(10% - 80px);
   width: 288px;
@@ -706,6 +706,28 @@ footer {
 .tab-minecraft .badge .intro {
   color: var(--mc-text);
   text-shadow: var(--mc-shadow);
+}
+
+/* Monocraft é larga: ajusta tamanhos para caber igual às outras abas */
+.tab-minecraft .hero-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  letter-spacing: 0;
+}
+
+.tab-minecraft .summary {
+  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+  line-height: 1.8;
+}
+
+.tab-minecraft .badge .intro {
+  font-style: normal;
+  font-size: 0.8rem;
+}
+
+.tab-minecraft .theme-toggle,
+.tab-minecraft footer {
+  font-size: 0.8rem;
 }
 
 .tab-minecraft .social-icon {

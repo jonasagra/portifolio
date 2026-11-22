@@ -47,7 +47,7 @@ const personJsonLd = {
     'https://br.minecraft.wiki/User:Corelakes',
     'https://corelakes.jonasagra.com.br',
     'https://namemc.com/profile/Corelakes',
-    'https://instagram.com/jnasagr',
+    'https://instagram.com/jnasagra',
     'https://www.linkedin.com/in/jonasagra/',
     // 'https://music.amazon.com.br/artists/B0925P28GL/jonas-agra', // oculto
     'https://www.facebook.com/jonasagrabr/?locale=pt_PT',
