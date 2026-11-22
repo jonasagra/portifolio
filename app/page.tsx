@@ -5,6 +5,7 @@ import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/so
 import { ChevronRight, MapPin } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 import { minecraftFont } from "./fonts/minecraft";
+import { nubankFont } from "./fonts/nubank";
 
 type TabId = "main" | "minecraft" | "nubank";
 
@@ -109,7 +110,7 @@ export default function Page() {
   const footerName = activeTab === "minecraft" ? "Corelakes" : "Jonas Agra";
 
   return (
-    <main ref={shellRef} className={`page-shell ${minecraftFont.variable} ${isDark ? "theme-dark" : "theme-light"} tab-${activeTab}`}>
+    <main ref={shellRef} className={`page-shell ${minecraftFont.variable} ${nubankFont.variable} ${isDark ? "theme-dark" : "theme-light"} tab-${activeTab}`}>
       {isLoading && (
         <div className="loader" role="status" aria-label="Carregando página">
           <div className="loader-mark"><img src={isDark ? "/logo_symbol_dark.svg" : "/logo_symbol_light.svg"} alt="" /></div>

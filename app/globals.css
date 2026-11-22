@@ -918,13 +918,14 @@ footer {
 
 /* Elementos no estilo do nubank.com.br: títulos 600 com letras juntas, pílulas, blocos roxos */
 .tab-nubank {
+  font-family: var(--font-nubank), var(--font-sans);
   --nu-purple: #820ad1;
   --nu-purple-bright: #8d0de3;
   --nu-ink: #1e002f;
 }
 
 .tab-nubank .hero-title {
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
@@ -934,6 +935,7 @@ footer {
 
 .tab-nubank .summary {
   font-size: clamp(1rem, 1.1vw, 1.125rem);
+  font-weight: 500;
 }
 
 .tab-nubank .badge {
@@ -943,13 +945,13 @@ footer {
 
 .tab-nubank .badge .intro {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .tab-nubank .theme-toggle {
   background: var(--nu-purple);
   border-color: transparent;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nu-block {
@@ -989,13 +991,13 @@ footer {
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.16);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nu-block-title {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
@@ -1019,7 +1021,7 @@ footer {
   background: #ffffff;
   color: var(--nu-purple);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
