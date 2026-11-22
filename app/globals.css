@@ -1431,6 +1431,9 @@ footer {
 .code-dot:nth-child(3) { background: #28c840; }
 
 .code-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   margin-left: 0.5rem;
   font-size: 0.75rem;
   color: #9aa0ab;
@@ -1444,6 +1447,12 @@ footer {
   font-size: clamp(0.8rem, 2.9vw, 0.88rem);
   line-height: 1.75;
   color: #d6d9e0;
+}
+
+.code-file-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  color: #61dafb;
 }
 
 /* cursor piscando em Racing Yellow no fim do texto */
