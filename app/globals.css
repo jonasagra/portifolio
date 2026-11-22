@@ -201,13 +201,6 @@ body {
   background: linear-gradient(to bottom, transparent 62%, var(--photo-fade) 100%);
 }
 
-/* Nas fotos da aba principal e do Nubank a cabeça fica a ~40% da largura da imagem; desloca a foto 10%
-   para a direita para a cabeça ficar embaixo do menu de abas (que está no centro da página) */
-.tab-main .hero-photo,
-.tab-nubank .hero-photo {
-  transform: translateX(calc(min(600px, 100%) * 0.1));
-}
-
 .hero-image {
   width: min(600px, 100%);
   height: auto;
