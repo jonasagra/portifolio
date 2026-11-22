@@ -1092,6 +1092,307 @@ footer {
   }
 }
 
+/* Namoro com a Ana: detalhe pequeno embaixo do selo, no estilo de cada aba */
+.love {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: 0.45rem;
+  margin: -0.35rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.love-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.love-main {
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+}
+
+.love-main .love-icon {
+  color: #f43f5e;
+}
+
+.love-heartbeat {
+  animation: love-beat 1.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes love-beat {
+  0%, 60%, 100% { transform: scale(1); }
+  15% { transform: scale(1.22); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.12); }
+}
+
+.love-counter {
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-subtle);
+}
+
+/* Minecraft: mensagens de chat (fundo escuro translúcido, texto com sombra) */
+.love-minecraft {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.45rem 0.65rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffff55;
+  text-shadow: 2px 2px 0 #3f3f15;
+  font-size: 0.78rem;
+}
+
+.love-minecraft p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.love-minecraft .love-icon {
+  width: 18px;
+  height: 16px;
+}
+
+.love-minecraft-day {
+  color: #e0e0e0;
+  text-shadow: 2px 2px 0 #383838;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nubank: cartão adicional da Ana (em pé, estilo mockup do nubank.com.br) com o contador */
+.love-nubank {
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem 0 0;
+}
+
+.nu-card-scene {
+  perspective: 1000px;
+  padding: 1rem 2rem 2rem;
+  animation: nu-card-float 6s ease-in-out infinite;
+}
+
+@keyframes nu-card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.nu-card3d {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  width: clamp(170px, 46vw, 210px);
+  aspect-ratio: 54 / 85.6;
+  border-radius: 14px;
+  overflow: hidden;
+  color: #f4eefb;
+  background:
+    radial-gradient(130% 70% at 20% 0%, rgba(255, 255, 255, 0.18), transparent 60%),
+    linear-gradient(165deg, #9a6be0 0%, #6f33c4 42%, #5a22ad 72%, #6a35bd 100%);
+  transform: rotateX(calc(8deg + var(--rx))) rotateY(calc(-20deg + var(--ry))) rotateZ(-7deg);
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    1px 1px 0 #8a2f9a,
+    2px 2px 0 #74237f,
+    0 30px 50px -18px rgba(60, 10, 110, 0.7);
+}
+
+.nu-card3d.is-tilting {
+  transition: transform 0.08s linear;
+}
+
+/* faixa de luz que acompanha a inclinação, como nas fotos de produto */
+.nu-card3d-shine {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.14) 45%, transparent 60%),
+    radial-gradient(circle at var(--gx, 50%) var(--gy, 35%), rgba(255, 255, 255, 0.22), transparent 50%);
+  pointer-events: none;
+}
+
+.nu-card3d-hearts {
+  position: absolute;
+  top: 9%;
+  left: 11%;
+  width: 30%;
+  height: auto;
+}
+
+.nu-card3d-chip {
+  position: absolute;
+  top: 8.5%;
+  left: 48%;
+  width: 17%;
+  height: auto;
+}
+
+.nu-card3d-holder {
+  position: absolute;
+  left: 11%;
+  top: 52%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.nu-card3d-name {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.nu-card3d-counter {
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.nu-card3d-since {
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+
+.nu-card3d-logo {
+  position: absolute;
+  left: 11%;
+  bottom: 8%;
+  width: 34%;
+  filter: brightness(0) invert(0.94);
+}
+
+/* Aba principal: detalhes em Racing Yellow (Porsche 911 Carrera S) */
+.tab-main {
+  --racing-yellow: #f2c200;
+  --car-paint-top: #ffd84a;
+  --car-paint: #f2c200;
+  --car-paint-low: #b98c00;
+}
+
+.theme-dark.tab-main {
+  --bg-subtle: var(--racing-yellow);
+}
+
+.theme-light.tab-main {
+  --bg-subtle: var(--racing-yellow);
+}
+
+.tab-main .badge .intro,
+.tab-main .theme-toggle {
+  color: #14120a;
+}
+
+.tab-main .badge .intro {
+  font-weight: 600;
+}
+
+/* Porsche 911 em Racing Yellow estacionado em cima do selo (o carro vem da direita, virado para a esquerda) */
+.badge-parking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.porsche-drive {
+  width: min(250px, 62%);
+  /* rodas encostadas no topo do selo */
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 1;
+  animation: porsche-arrive 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.porsche-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--racing-yellow);
+}
+
+/* Rodas em cinza bem escuro, no estilo dos aros de 10 raios duplos com pinça vermelha */
+.pw-tyre { fill: #141518; }
+.pw-barrel { fill: #1c1d21; }
+.pw-disc { fill: #26272c; }
+.pw-caliper { fill: none; stroke: #d3202b; stroke-linecap: round; }
+.pw-spokes { fill: none; stroke: #4a4d55; stroke-linecap: round; stroke-linejoin: round; }
+.pw-lip { fill: none; stroke: #3b3d44; }
+.pw-hub { fill: #34363c; }
+.pw-bolt { fill: #5b5e66; }
+.pw-cap { fill: #1c1d21; stroke: #5b5e66; stroke-width: 3; }
+
+.porsche-taillight-housing { fill: #1b1c20; }
+.porsche-taillight-led { fill: none; stroke: #ff2a2f; stroke-width: 5; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(255, 42, 47, 0.8)); }
+
+/* rodas girando enquanto o carro chega (indo para a esquerda: sentido anti-horário) */
+.pw-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pw-roll 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+@keyframes pw-roll {
+  from { transform: rotate(1080deg); }
+  to { transform: rotate(0deg); }
+}
+
+.porsche-drive:hover {
+  transform: translateX(-6px);
+  transition: transform 0.4s ease;
+}
+
+@keyframes porsche-arrive {
+  from { transform: translateX(120%); opacity: 0; }
+  50% { opacity: 1; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.porsche-caption {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-porsche), var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.tab-main .love {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .tab-main .badge {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .tab-main .badge .intro {
+    font-size: min(0.85rem, 3.05vw);
+    white-space: nowrap;
+  }
+}
+
+/* Títulos da aba principal na mesma fonte larga do letreiro */
+.tab-main .hero-title {
+  font-family: var(--font-porsche), var(--font-sans);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+}
+
 /* Footer */
 footer {
   width: 100%;

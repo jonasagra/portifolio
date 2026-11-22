@@ -4,8 +4,11 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/socials";
 import { ChevronRight, MapPin, Moon, Sun } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
+import { Love } from "@/components/Love";
+import { Porsche911, PorscheName } from "@/components/Porsche911";
 import { minecraftFont } from "./fonts/minecraft";
 import { nubankFont } from "./fonts/nubank";
+import { porscheFont } from "./fonts/porsche";
 
 type TabId = "main" | "minecraft" | "nubank";
 
@@ -110,7 +113,7 @@ export default function Page() {
   const footerName = activeTab === "minecraft" ? "Corelakes" : "Jonas Agra";
 
   return (
-    <main ref={shellRef} className={`page-shell ${minecraftFont.variable} ${nubankFont.variable} ${isDark ? "theme-dark" : "theme-light"} tab-${activeTab}`}>
+    <main ref={shellRef} className={`page-shell ${minecraftFont.variable} ${nubankFont.variable} ${porscheFont.variable} ${isDark ? "theme-dark" : "theme-light"} tab-${activeTab}`}>
       {isLoading && (
         <div className="loader" role="status" aria-label="Carregando página">
           <div className="loader-mark"><img src={isDark ? "/logo_symbol_dark.svg" : "/logo_symbol_light.svg"} alt="" /></div>
@@ -192,6 +195,7 @@ export default function Page() {
                 <div className="badge">
                   <p className="intro">Admin &amp; Bureaucrat @ Minecraft Wiki</p>
                 </div>
+                <Love variant="minecraft" />
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
                 <p className="summary">In the Minecraft world I go by Corelakes. I&apos;ve been editing the Portuguese Minecraft Wiki since 2020, with {wikiEdits !== null ? (<a className="wiki-edits" href="https://pt.minecraft.wiki/w/Especial:Contribui%C3%A7%C3%B5es/Corelakes" target="_blank" rel="noopener noreferrer">{wikiEdits.toLocaleString("en-US")} edits</a>) : "more than 16,500 edits"}, and I&apos;ve been one of its administrators and bureaucrats since 2023.</p>
@@ -215,6 +219,7 @@ export default function Page() {
                 <div className="badge">
                   <p className="intro">Collections Specialist @ Nubank</p>
                 </div>
+                <Love variant="nubank" />
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
                 <p className="summary">Since September 2024 I&apos;ve been a Collections Specialist at Nubank, outsourced through AeC. Alongside the job, I&apos;m studying Quality Assurance and I keep building things for the web.</p>
@@ -253,9 +258,14 @@ export default function Page() {
                   )}
                 </div>
                 <img className={`hero-logo ${isLoading ? "logo-loading" : "logo-ready"}`} src={isDark ? "/logo_dark.svg" : "/logo_light.svg"} alt="Jonas Agra" />
-                <div className="badge">
-                  <p className="intro">QA Student • Web Developer • JavaScript &amp; React</p>
+                <div className="badge-parking">
+                  <Porsche911 />
+                  <div className="badge">
+                    <p className="intro">QA Student • Web Developer • JavaScript &amp; React</p>
+                  </div>
+                  <PorscheName />
                 </div>
+                <Love variant="main" />
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
                 <p className="summary">I&apos;m a 26-year-old developer from João Pessoa, Brazil, moving into Quality Assurance. I already do manual testing and bug reporting with Jira, and I&apos;m learning Cypress and TypeScript. My strongest side is the web: JavaScript and React.</p>
