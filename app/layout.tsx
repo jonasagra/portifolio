@@ -29,6 +29,14 @@ export const metadata: Metadata = {
     siteName: 'Jonas Agra',
     type: 'website',
     locale: 'pt_BR',
+    // imagem da prévia do link (WhatsApp, Instagram, LinkedIn etc.): logotipo branco em fundo preto, 1200x630
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Jonas Agra' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jonas Agra | QA & Web Developer',
+    description,
+    images: ['/og-image.png'],
   },
 };
 
