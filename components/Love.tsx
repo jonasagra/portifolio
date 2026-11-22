@@ -66,8 +66,9 @@ function Heart({ className = "love-icon love-heartbeat" }: { className?: string 
   );
 }
 
-// Cartão adicional do Nubank com o nome da Ana: inclina em 3D seguindo o ponteiro e flutua parado
-function AdditionalCard() {
+// Cartão adicional do Nubank com o nome da Ana e o contador, no estilo dos mockups do nubank.com.br:
+// cartão em pé, inclinado no espaço, flutuando; inclina mais seguindo o ponteiro
+function AdditionalCard({ elapsed }: { elapsed: Elapsed | null }) {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0, active: false });
 
@@ -76,7 +77,7 @@ function AdditionalCard() {
     if (!r) return;
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
-    setTilt({ x: -py * 18, y: px * 22, active: true });
+    setTilt({ x: -py * 16, y: px * 20, active: true });
   }
 
   return (
@@ -84,21 +85,33 @@ function AdditionalCard() {
       <div
         ref={ref}
         className={`nu-card3d ${tilt.active ? "is-tilting" : ""}`}
-        style={{ "--rx": `${tilt.x}deg`, "--ry": `${tilt.y}deg`, "--gx": `${50 + tilt.y * 2}%`, "--gy": `${50 - tilt.x * 2}%` } as CSSProperties}
+        style={{ "--rx": `${tilt.x}deg`, "--ry": `${tilt.y}deg`, "--gx": `${50 + tilt.y * 2}%`, "--gy": `${35 - tilt.x * 2}%` } as CSSProperties}
         role="img"
-        aria-label="Cartão adicional do Nubank com o nome Ana"
+        aria-label={`Cartão adicional do Nubank com o nome Ana${elapsed ? `, juntos há ${elapsed.days} dias` : ""}`}
       >
         <div className="nu-card3d-shine" />
-        <img src="/nubank/nubank-logo.svg" alt="" className="nu-card3d-logo" />
-        <Heart className="nu-card3d-heart" />
-        <div className="nu-card3d-chip" />
-        <svg className="nu-card3d-contactless" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 7.5a6 6 0 0 1 0 9M11.5 5a9.5 9.5 0 0 1 0 14M15 2.5a13 13 0 0 1 0 19" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        {/* dois corações sobrepostos no lugar da bandeira: os dois */}
+        <svg className="nu-card3d-hearts" viewBox="0 0 40 24" aria-hidden="true">
+          <path fill="#e5283a" d="M12 22S3 16.6 1.2 11.3C-.4 6.8 2 2.2 6.3 2c2.4-.1 4.3 1.2 5.7 3.3C13.4 3.2 15.3 1.9 17.7 2c4.3.2 6.7 4.8 5.1 9.3C21 16.6 12 22 12 22z" />
+          <path fill="#f6a6c8" fillOpacity="0.9" d="M28 22s-9-5.4-10.8-10.7C15.6 6.8 18 2.2 22.3 2c2.4-.1 4.3 1.2 5.7 3.3C29.4 3.2 31.3 1.9 33.7 2c4.3.2 6.7 4.8 5.1 9.3C37 16.6 28 22 28 22z" />
+        </svg>
+        <svg className="nu-card3d-chip" viewBox="0 0 30 38" aria-hidden="true">
+          <rect x="0.75" y="0.75" width="28.5" height="36.5" rx="5" fill="url(#chipgrad)" stroke="#8d8a93" strokeWidth="1.5" />
+          <path d="M10 1v11M20 1v11M10 26v11M20 26v11M1 13h8M21 13h8M1 25h8M21 25h8M9 13c3-3 9-3 12 0v12c-3 3-9 3-12 0z" fill="none" stroke="#8d8a93" strokeWidth="1.2" />
+          <defs>
+            <linearGradient id="chipgrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#f2f0f5" />
+              <stop offset="0.5" stopColor="#c9c5cf" />
+              <stop offset="1" stopColor="#ecebee" />
+            </linearGradient>
+          </defs>
         </svg>
         <div className="nu-card3d-holder">
-          <span className="nu-card3d-label">Additional card</span>
-          <span className="nu-card3d-name">ANA</span>
+          <span className="nu-card3d-name">Ana</span>
+          <span className="nu-card3d-counter">{elapsed ? `${elapsed.days}d ${clock(elapsed)}` : "\u00a0"}</span>
+          <span className="nu-card3d-since">together since 09.11.2026</span>
         </div>
+        <img src="/nubank/nubank-logo.svg" alt="" className="nu-card3d-logo" />
       </div>
     </div>
   );
@@ -123,18 +136,7 @@ export function Love({ variant }: { variant: "main" | "minecraft" | "nubank" }) 
   if (variant === "nubank") {
     return (
       <div className="love-nubank">
-        <AdditionalCard />
-        <p className="love-nubank-since">
-          Together since Nov 9, 2026
-          {elapsed && (
-            <>
-              {" · "}
-              <strong>
-                {elapsed.days}d {clock(elapsed)}
-              </strong>
-            </>
-          )}
-        </p>
+        <AdditionalCard elapsed={elapsed} />
       </div>
     );
   }
