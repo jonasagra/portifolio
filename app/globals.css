@@ -167,8 +167,9 @@ body {
 }
 
 .theme-icon {
-  font-size: 0.95rem;
-  line-height: 1;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
 }
 
 /* Hero Section */
@@ -511,16 +512,29 @@ body {
   height: 3rem;
   border-radius: 9999px;
   border: 0;
-  background: transparent;
+  /* círculo discreto em todos os botões: os três ocupam o mesmo espaço e o menu parece centralizado */
+  background: var(--tab-slot);
   cursor: pointer;
-  opacity: 0.55;
-  filter: grayscale(60%);
+  opacity: 0.8;
   transition: background-color 0.2s ease, opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
 }
 
+.theme-dark {
+  --tab-slot: rgba(255, 255, 255, 0.07);
+}
+
+.theme-light {
+  --tab-slot: rgba(0, 0, 0, 0.05);
+}
+
 .tab-button:hover {
-  opacity: 0.9;
-  filter: none;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* "nu" roxo some no fundo escuro quando inativo: mostra em branco */
+.theme-dark .tab-button-nubank:not(.is-active) .tab-icon {
+  filter: brightness(0) invert(1);
 }
 
 .tab-button.is-active {

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/socials";
-import { ChevronRight, MapPin } from "lucide-react";
+import { ChevronRight, MapPin, Moon, Sun } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 import { minecraftFont } from "./fonts/minecraft";
 import { nubankFont } from "./fonts/nubank";
@@ -152,7 +152,7 @@ export default function Page() {
 
       <nav className="topbar" aria-label="Navegação principal">
         <button className="theme-toggle" onClick={toggleTheme} aria-label={`Ativar modo ${isDark ? "claro" : "escuro"}`}>
-          <span className="theme-icon" aria-hidden="true">{isDark ? "☼" : "◐"}</span>
+          {isDark ? <Sun className="theme-icon" aria-hidden="true" /> : <Moon className="theme-icon" aria-hidden="true" />}
           <span>{isDark ? "Light" : "Dark"}</span>
         </button>
       </nav>
