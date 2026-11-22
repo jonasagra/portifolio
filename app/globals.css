@@ -1092,6 +1092,88 @@ footer {
   }
 }
 
+/* Namoro com a Ana: detalhe pequeno embaixo do selo, no estilo de cada aba */
+.love {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: 0.45rem;
+  margin: -0.35rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.love-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.love-main {
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+}
+
+.love-main .love-icon {
+  color: #f43f5e;
+}
+
+.love-heartbeat {
+  animation: love-beat 1.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes love-beat {
+  0%, 60%, 100% { transform: scale(1); }
+  15% { transform: scale(1.22); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.12); }
+}
+
+/* Minecraft: mensagem de chat (fundo escuro translúcido, texto amarelo com sombra) */
+.love-minecraft {
+  padding: 0.4rem 0.65rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffff55;
+  text-shadow: 2px 2px 0 #3f3f15;
+  font-size: 0.78rem;
+}
+
+.love-minecraft .love-icon {
+  width: 18px;
+  height: 16px;
+}
+
+/* Nubank: pílula com aliança roxa e texto em ExtraBold */
+.love-nubank {
+  padding: 0.45rem 0.9rem 0.45rem 0.7rem;
+  border-radius: 9999px;
+  font-weight: 800;
+}
+
+.theme-dark .love-nubank {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f6edff;
+}
+
+.theme-light .love-nubank {
+  background: #ffffff;
+  color: var(--nu-ink);
+  box-shadow: 0 6px 18px -10px rgba(130, 10, 209, 0.6);
+}
+
+.love-nubank .love-icon {
+  width: 16px;
+  height: 16px;
+  color: #b45cf0;
+}
+
+.theme-light .love-nubank .love-icon {
+  color: var(--nu-purple);
+}
+
 /* Footer */
 footer {
   width: 100%;
