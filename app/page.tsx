@@ -5,8 +5,10 @@ import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/so
 import { ChevronRight, MapPin, Moon, Sun } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 import { Love } from "@/components/Love";
+import { DreamCar } from "@/components/DreamCar";
 import { minecraftFont } from "./fonts/minecraft";
 import { nubankFont } from "./fonts/nubank";
+import { porscheFont } from "./fonts/porsche";
 
 type TabId = "main" | "minecraft" | "nubank";
 
@@ -111,7 +113,7 @@ export default function Page() {
   const footerName = activeTab === "minecraft" ? "Corelakes" : "Jonas Agra";
 
   return (
-    <main ref={shellRef} className={`page-shell ${minecraftFont.variable} ${nubankFont.variable} ${isDark ? "theme-dark" : "theme-light"} tab-${activeTab}`}>
+    <main ref={shellRef} className={`page-shell ${minecraftFont.variable} ${nubankFont.variable} ${porscheFont.variable} ${isDark ? "theme-dark" : "theme-light"} tab-${activeTab}`}>
       {isLoading && (
         <div className="loader" role="status" aria-label="Carregando página">
           <div className="loader-mark"><img src={isDark ? "/logo_symbol_dark.svg" : "/logo_symbol_light.svg"} alt="" /></div>
@@ -271,6 +273,8 @@ export default function Page() {
                     </a>
                   ))}
                 </div>
+                <div className="separator"></div>
+                <DreamCar />
                 <div className="separator"></div>
                 <TechMarquee />
               </>

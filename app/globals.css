@@ -1275,6 +1275,141 @@ footer {
   filter: brightness(0) invert(0.94);
 }
 
+/* Aba principal: detalhes em Racing Yellow (Porsche 911 Carrera S) */
+.tab-main {
+  --racing-yellow: #f2c200;
+  --car-paint-top: #ffd84a;
+  --car-paint: #f2c200;
+  --car-paint-low: #b98c00;
+}
+
+.theme-dark.tab-main {
+  --bg-subtle: var(--racing-yellow);
+}
+
+.theme-light.tab-main {
+  --bg-subtle: var(--racing-yellow);
+}
+
+.tab-main .badge .intro,
+.tab-main .theme-toggle {
+  color: #14120a;
+}
+
+.tab-main .badge .intro {
+  font-weight: 600;
+}
+
+/* Dream car: letreiro largo (Michroma) + ficha técnica em código */
+.dream-car {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.dream-car-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.dream-car-title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-porsche), var(--font-sans);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.dream-car-brand {
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  letter-spacing: 0.14em;
+  line-height: 1;
+  color: var(--fg);
+}
+
+.dream-car-model {
+  font-size: clamp(0.75rem, 2.4vw, 0.95rem);
+  letter-spacing: 0.3em;
+  color: var(--racing-yellow);
+}
+
+.theme-light .dream-car-model {
+  color: #a37d00;
+}
+
+/* Títulos da aba principal na mesma fonte larga do letreiro */
+.tab-main .hero-title {
+  font-family: var(--font-porsche), var(--font-sans);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+}
+
+/* Card no estilo editor de código */
+.code-card {
+  width: min(460px, 100%);
+  margin: 0.5rem 0 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111318;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.7);
+  text-align: left;
+}
+
+.code-card-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.85rem;
+  background: #1a1d24;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.code-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3a3e48;
+}
+
+.code-dot:first-child { background: #ff5f57; }
+.code-dot:nth-child(2) { background: #febc2e; }
+.code-dot:nth-child(3) { background: #28c840; }
+
+.code-file {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: #9aa0ab;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.code-body {
+  margin: 0;
+  padding: 1rem 1.1rem 1.1rem;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(0.72rem, 2.6vw, 0.85rem);
+  line-height: 1.7;
+  color: #d6d9e0;
+}
+
+.tk-key { color: #c586f5; }
+.tk-var { color: #7cc7ff; }
+.tk-op { color: #d6d9e0; }
+.tk-prop { color: #9cdcfe; }
+.tk-str { color: var(--racing-yellow); }
+
 /* Footer */
 footer {
   width: 100%;
