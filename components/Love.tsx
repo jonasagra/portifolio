@@ -90,10 +90,10 @@ function AdditionalCard({ elapsed }: { elapsed: Elapsed | null }) {
         aria-label={`Cartão adicional do Nubank com o nome Ana${elapsed ? `, juntos há ${elapsed.days} dias` : ""}`}
       >
         <div className="nu-card3d-shine" />
-        {/* dois corações sobrepostos no lugar da bandeira: os dois */}
+        {/* dois corações sobrepostos (vermelho e amarelo) no lugar da bandeira: os dois */}
         <svg className="nu-card3d-hearts" viewBox="0 0 40 24" aria-hidden="true">
           <path fill="#e5283a" d="M12 22S3 16.6 1.2 11.3C-.4 6.8 2 2.2 6.3 2c2.4-.1 4.3 1.2 5.7 3.3C13.4 3.2 15.3 1.9 17.7 2c4.3.2 6.7 4.8 5.1 9.3C21 16.6 12 22 12 22z" />
-          <path fill="#f6a6c8" fillOpacity="0.9" d="M28 22s-9-5.4-10.8-10.7C15.6 6.8 18 2.2 22.3 2c2.4-.1 4.3 1.2 5.7 3.3C29.4 3.2 31.3 1.9 33.7 2c4.3.2 6.7 4.8 5.1 9.3C37 16.6 28 22 28 22z" />
+          <path fill="#f5b731" fillOpacity="0.88" d="M28 22s-9-5.4-10.8-10.7C15.6 6.8 18 2.2 22.3 2c2.4-.1 4.3 1.2 5.7 3.3C29.4 3.2 31.3 1.9 33.7 2c4.3.2 6.7 4.8 5.1 9.3C37 16.6 28 22 28 22z" />
         </svg>
         <svg className="nu-card3d-chip" viewBox="0 0 30 38" aria-hidden="true">
           <rect x="0.75" y="0.75" width="28.5" height="36.5" rx="5" fill="url(#chipgrad)" stroke="#8d8a93" strokeWidth="1.5" />
