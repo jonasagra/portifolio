@@ -910,9 +910,10 @@ footer {
   will-change: left, top;
 }
 
-.nu-watermark-1 { width: 420px; transform: rotate(-12deg); animation-duration: 70s; animation-delay: -12s; }
-.nu-watermark-2 { width: 300px; transform: rotate(10deg); animation-duration: 55s; animation-delay: -30s; }
-.nu-watermark-3 { width: 220px; transform: rotate(-4deg); animation-duration: 85s; animation-delay: -75s; }
+/* mesma duração e atrasos em terços: andam juntos no mesmo ritmo, sempre separados */
+.nu-watermark-1 { width: 380px; transform: rotate(-12deg); animation-duration: 75s; animation-delay: -10s; }
+.nu-watermark-2 { width: 300px; transform: rotate(10deg); animation-duration: 75s; animation-delay: -35s; }
+.nu-watermark-3 { width: 340px; transform: rotate(-4deg); animation-duration: 75s; animation-delay: -60s; }
 
 @keyframes nu-drift {
   from { left: -35%; top: 100%; }
@@ -941,7 +942,7 @@ footer {
 }
 
 .tab-nubank .hero-title {
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.03em;
 }
 
@@ -961,7 +962,7 @@ footer {
 
 .tab-nubank .badge .intro {
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .tab-nubank .theme-toggle {
@@ -989,16 +990,28 @@ footer {
 .nu-block-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
+  gap: clamp(0.9rem, 2.5vw, 1.25rem);
+  margin-bottom: 0.35rem;
 }
 
 .nu-block-logo {
-  width: clamp(64px, 12vw, 88px);
-  height: auto;
+  display: block;
+  height: clamp(30px, 5vw, 40px);
+  width: auto;
   flex-shrink: 0;
   filter: brightness(0) invert(1);
+}
+
+.nu-block-logo-aec {
+  filter: none;
+  height: clamp(32px, 5.3vw, 42px);
+}
+
+.nu-block-divider {
+  width: 2px;
+  height: clamp(30px, 5vw, 42px);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .nu-block-eyebrow {
@@ -1007,13 +1020,13 @@ footer {
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.16);
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .nu-block-title {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
@@ -1037,7 +1050,7 @@ footer {
   background: #ffffff;
   color: var(--nu-purple);
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

@@ -232,9 +232,11 @@ export default function Page() {
                 <p className="summary">Since September 2024 I&apos;ve been a Collections Specialist at Nubank, outsourced through AeC. Alongside the job, I&apos;m studying Quality Assurance and I keep building things for the web.</p>
                 <section className="nu-block" aria-label="Experiência no Nubank">
                   <div className="nu-block-head">
-                    <p className="nu-block-eyebrow">Since Sep 2024 · Indirect contract</p>
                     <img src="/nubank/nubank-logo.svg" alt="Nubank" className="nu-block-logo" />
+                    <span className="nu-block-divider" aria-hidden="true" />
+                    <img src="/nubank/aec-logo-white.png" alt="AeC" className="nu-block-logo nu-block-logo-aec" />
                   </div>
+                  <p className="nu-block-eyebrow">Since Sep 2024 · Indirect contract</p>
                   <h2 className="nu-block-title">Collections Specialist at&nbsp;Nubank</h2>
                   <p className="nu-block-text">Outsourced through AeC, working in the collections team of Nubank, a Brazilian digital bank.</p>
                   <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="nu-button">
