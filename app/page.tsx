@@ -5,7 +5,7 @@ import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/so
 import { ChevronRight, MapPin, Moon, Sun } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 import { Love } from "@/components/Love";
-import { DreamCar } from "@/components/DreamCar";
+import { Porsche911 } from "@/components/Porsche911";
 import { minecraftFont } from "./fonts/minecraft";
 import { nubankFont } from "./fonts/nubank";
 import { porscheFont } from "./fonts/porsche";
@@ -274,7 +274,7 @@ export default function Page() {
                   ))}
                 </div>
                 <div className="separator"></div>
-                <DreamCar />
+                <Porsche911 />
                 <div className="separator"></div>
                 <TechMarquee />
               </>
