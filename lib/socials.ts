@@ -1,7 +1,6 @@
 
 import type { IconType } from 'react-icons';
 import type { ComponentType } from 'react';
-import { SiWikipedia } from 'react-icons/si';
 import { TbBrandMinecraft } from 'react-icons/tb';
 import { CreeperIcon } from '@/components/CreeperIcon';
 import {
@@ -54,8 +53,7 @@ export const NubankSocials: Social[] = [
 
 // Links exibidos na aba Minecraft (Corelakes)
 export const MinecraftSocials: Social[] = [
-  { name: 'Corelakes', href: 'https://corelakes.jonasagra.com.br', icon: CreeperIcon },
-  { name: 'Minecraft Wiki', href: 'https://br.minecraft.wiki/User:Corelakes', icon: SiWikipedia },
+  { name: 'Minecraft Wiki', href: 'https://br.minecraft.wiki/User:Corelakes', icon: CreeperIcon },
   { name: 'NameMC', href: 'https://namemc.com/profile/Corelakes', icon: TbBrandMinecraft },
   { name: 'YouTube', href: 'https://youtube.com/@corelakes', icon: FaYoutube },
   { name: 'Twitch', href: 'https://www.twitch.tv/corelakes', icon: FaTwitch },

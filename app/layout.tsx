@@ -53,7 +53,6 @@ const personJsonLd = {
     // 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', // oculto
     'https://github.com/jonasagra',
     'https://br.minecraft.wiki/User:Corelakes',
-    'https://corelakes.jonasagra.com.br',
     'https://namemc.com/profile/Corelakes',
     'https://instagram.com/jnasagra',
     'https://www.linkedin.com/in/jonasagra/',
