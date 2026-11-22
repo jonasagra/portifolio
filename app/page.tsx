@@ -14,8 +14,8 @@ type TabId = "main" | "minecraft" | "nubank";
 
 const TABS: { id: TabId; label: string; icon: (isDark: boolean) => string; pixel?: boolean }[] = [
   { id: "main", label: "Jonas Agra", icon: (isDark) => (isDark ? "/logo_symbol_dark.svg" : "/logo_symbol_light.svg") },
-  { id: "minecraft", label: "Minecraft", icon: () => "/minecraft/grass-block.png", pixel: true },
   { id: "nubank", label: "Nubank", icon: () => "/nubank/nubank-logo.svg" },
+  { id: "minecraft", label: "Minecraft", icon: () => "/minecraft/grass-block.png", pixel: true },
 ];
 
 // Nuvens em blocos (largura em px da arte; cada px é ampliado no CSS)
