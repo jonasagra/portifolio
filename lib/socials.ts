@@ -25,7 +25,7 @@ export type Social = {
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/jonasagra/';
 
-// Redes pessoais disponíveis. Para mostrar uma numa aba, é só descomentar a linha dela na lista da aba.
+// Redes pessoais disponíveis. Para mostrar uma numa aba, é só incluir na lista da aba.
 const Email: Social = { name: 'E-mail', href: 'mailto:jonasagrabr@gmail.com', icon: FaEnvelope };
 export const PersonalSocials = {
   whatsapp: { name: 'WhatsApp', href: 'https://wa.me/5583981306043', icon: FaWhatsapp },
@@ -37,22 +37,19 @@ export const PersonalSocials = {
   // spotify: { name: 'Spotify', href: 'https://open.spotify.com/intl-pt/artist/1CHO0ZLJs1YX3IlDotU2Be', icon: FaSpotify },
 } satisfies Record<string, Social>;
 
-// Links da aba principal
+// Links da aba principal: redes pessoais (sem LinkedIn e sem as do Corelakes)
 export const Socials: Social[] = [
+  PersonalSocials.whatsapp,
   Email,
-  // PersonalSocials.whatsapp,
-  // PersonalSocials.github,
-  // PersonalSocials.x,
-  // PersonalSocials.instagram,
-  // PersonalSocials.facebook,
+  PersonalSocials.github,
+  PersonalSocials.x,
+  PersonalSocials.instagram,
+  PersonalSocials.facebook,
 ];
 
-// Links da aba Nubank (o LinkedIn também está no botão do card)
+// Links da aba Nubank: só o e-mail (o LinkedIn fica no botão do card)
 export const NubankSocials: Social[] = [
   Email,
-  // PersonalSocials.linkedin,
-  // PersonalSocials.whatsapp,
-  // PersonalSocials.github,
 ];
 
 // Links exibidos na aba Minecraft (Corelakes)
