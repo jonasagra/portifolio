@@ -900,13 +900,29 @@ footer {
   -webkit-mask-image: linear-gradient(to bottom, black, transparent 70%);
 }
 
+/* Logos "nu" atravessando o fundo na diagonal (de baixo à esquerda para cima à direita) e recomeçando */
 .nu-watermark {
   position: absolute;
+  left: -35%;
+  top: 100%;
   opacity: var(--nu-watermark-opacity);
+  animation: nu-drift linear infinite;
+  will-change: left, top;
 }
 
-.nu-watermark-1 { width: 420px; top: 6%; right: -90px; transform: rotate(-12deg); }
-.nu-watermark-2 { width: 360px; bottom: 8%; left: -110px; transform: rotate(10deg); }
+.nu-watermark-1 { width: 420px; transform: rotate(-12deg); animation-duration: 70s; animation-delay: -12s; }
+.nu-watermark-2 { width: 300px; transform: rotate(10deg); animation-duration: 55s; animation-delay: -30s; }
+.nu-watermark-3 { width: 220px; transform: rotate(-4deg); animation-duration: 85s; animation-delay: -75s; }
+
+@keyframes nu-drift {
+  from { left: -35%; top: 100%; }
+  to { left: 110%; top: -25%; }
+}
+
+/* Foto levemente roxa (filtro SVG #nu-duotone definido na página) */
+.nu-photo {
+  filter: url(#nu-duotone);
+}
 
 .nu-logo {
   width: 100%;
@@ -1043,10 +1059,15 @@ footer {
 
 @media (max-width: 640px) {
   .nu-watermark-1 { width: 260px; }
-  .nu-watermark-2 { width: 220px; }
+  .nu-watermark-2 { width: 200px; }
+  .nu-watermark-3 { width: 150px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .nu-watermark {
+    animation: none;
+  }
+
   .nu-orb {
     animation: none;
   }
