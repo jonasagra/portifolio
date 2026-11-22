@@ -8,14 +8,55 @@ const PATHS = [
   "M1473.52,554.78c20.64-2.54,41.58,2.73,60.15,11.58c28.09,13.52,49.2799,39.48,58.6899,69 c5.83,19.58,6.63,40.54,3.05,60.62c-3.6801,20.53-12.51,40.37-26.61,55.87c-15.74,17.52-37.7301,28.52-60.6101,33.26 c-11.5199,2.74-23.47,2.68-35.22,2.02c-20.73-1.38-41.4399-7.45-58.5499-19.46c-18.0601-12.48-31.4-30.83-40.2201-50.75 c-4.37-10.06-8.58-20.42-9.3999-31.47c-3.1801-35.78,8.34-73.89,34.7-99.02C1419.3101,567.29,1446.48,557.54,1473.52,554.78z",
 ];
 
-// Fica "estacionado" em cima do selo da aba principal
+// Lanterna traseira (recorte do próprio desenho), pintada de vermelho
+const TAILLIGHT = "M1827.15,483.7c-24.9,2.68-49.78,5.63-74.65,8.54 c-23.24,2.56-46.4301,5.78-69.72,7.59c-1.02,0.51-1.9,1.2-2.64,2.05c2.86,4.15,7.89,5.67,12.13,7.98 c15.85,7.42,33.02,13.44,50.76,12.88c38.01,0.15,76-1.26,114-1.69c1.84-0.12,4.37,0.04,5.23-2.06c0.67-2.14-0.23-4.34-0.7-6.41 c-3.01-10.82-8.0701-20.93-13.88-30.48C1840.8,482.12,1833.98,483.06,1827.15,483.7";
+
+// Fica "estacionado" em cima do selo da aba principal. O recorte (viewBox) termina na base do carro para as rodas
+// encostarem no selo. As rodas são desenhadas por cima: pneu escuro até o chão (o para-lama cobre o topo),
+// aro de 10 raios em Y e pinça de freio vermelha.
 export function Porsche911() {
   return (
     <div className="porsche-drive">
-      <svg className="porsche-svg" viewBox="-33.544 201.1074 1986.5848 677.5975" role="img" aria-label="Porsche 911 Carrera S, o carro favorito do Jonas">
-        {PATHS.map((d, i) => (
-          <path key={i} d={d} className={i >= 2 ? "porsche-wheel" : undefined} fill={i >= 2 ? undefined : "currentColor"} />
-        ))}
+      <svg className="porsche-svg" viewBox="10 250 1900 578" role="img" aria-label="Porsche 911 Carrera S, o carro favorito do Jonas">
+        <path d={PATHS[0]} fill="currentColor" />
+        <path d={PATHS[1]} fill="currentColor" />
+        <path d={TAILLIGHT} className="porsche-taillight" />
+        <clipPath id="wheel-well-0"><circle cx="410.6" cy="681.0" r="150" /></clipPath>
+        <circle cx="410.6" cy="671.0" r="156" clipPath="url(#wheel-well-0)" className="pw-tyre" />
+        <g transform="translate(410.6 671.0)">
+          <circle r="117.0" className="pw-barrel" />
+          <circle r="91.3" className="pw-disc" />
+          <path d="M-66.9 -38.6 A77.2 77.2 0 0 1 -13.4 -76.0" className="pw-caliper" strokeWidth="28.1" />
+          <g className="pw-spin">
+            <path d="M28.1 0.0 L64.4 0.0 M107.2 -18.9 L64.4 0.0 L107.2 18.9 M22.7 16.5 L52.1 37.8 M97.8 47.7 L52.1 37.8 L75.6 78.3 M8.7 26.7 L19.9 61.2 M51.1 96.1 L19.9 61.2 L15.1 107.8 M-8.7 26.7 L-19.9 61.2 M-15.1 107.8 L-19.9 61.2 L-51.1 96.1 M-22.7 16.5 L-52.1 37.8 M-75.6 78.3 L-52.1 37.8 L-97.8 47.7 M-28.1 0.0 L-64.4 0.0 M-107.2 18.9 L-64.4 0.0 L-107.2 -18.9 M-22.7 -16.5 L-52.1 -37.8 M-97.8 -47.7 L-52.1 -37.8 L-75.6 -78.3 M-8.7 -26.7 L-19.9 -61.2 M-51.1 -96.1 L-19.9 -61.2 L-15.1 -107.8 M8.7 -26.7 L19.9 -61.2 M15.1 -107.8 L19.9 -61.2 L51.1 -96.1 M22.7 -16.5 L52.1 -37.8 M75.6 -78.3 L52.1 -37.8 L97.8 -47.7" className="pw-spokes" strokeWidth="8.8" />
+            <circle r="113.5" className="pw-lip" strokeWidth="5.9" />
+            <circle r="28.1" className="pw-hub" />
+            <circle cx="0.0" cy="-17.6" r="3.5" className="pw-bolt" />
+            <circle cx="16.7" cy="-5.4" r="3.5" className="pw-bolt" />
+            <circle cx="10.3" cy="14.2" r="3.5" className="pw-bolt" />
+            <circle cx="-10.3" cy="14.2" r="3.5" className="pw-bolt" />
+            <circle cx="-16.7" cy="-5.4" r="3.5" className="pw-bolt" />
+            <circle r="9.4" className="pw-cap" />
+          </g>
+        </g>
+        <clipPath id="wheel-well-1"><circle cx="1480.3" cy="681.1" r="150" /></clipPath>
+        <circle cx="1480.3" cy="671.1" r="156" clipPath="url(#wheel-well-1)" className="pw-tyre" />
+        <g transform="translate(1480.3 671.1)">
+          <circle r="117.0" className="pw-barrel" />
+          <circle r="91.3" className="pw-disc" />
+          <path d="M-66.9 -38.6 A77.2 77.2 0 0 1 -13.4 -76.0" className="pw-caliper" strokeWidth="28.1" />
+          <g className="pw-spin">
+            <path d="M28.1 0.0 L64.4 0.0 M107.2 -18.9 L64.4 0.0 L107.2 18.9 M22.7 16.5 L52.1 37.8 M97.8 47.7 L52.1 37.8 L75.6 78.3 M8.7 26.7 L19.9 61.2 M51.1 96.1 L19.9 61.2 L15.1 107.8 M-8.7 26.7 L-19.9 61.2 M-15.1 107.8 L-19.9 61.2 L-51.1 96.1 M-22.7 16.5 L-52.1 37.8 M-75.6 78.3 L-52.1 37.8 L-97.8 47.7 M-28.1 0.0 L-64.4 0.0 M-107.2 18.9 L-64.4 0.0 L-107.2 -18.9 M-22.7 -16.5 L-52.1 -37.8 M-97.8 -47.7 L-52.1 -37.8 L-75.6 -78.3 M-8.7 -26.7 L-19.9 -61.2 M-51.1 -96.1 L-19.9 -61.2 L-15.1 -107.8 M8.7 -26.7 L19.9 -61.2 M15.1 -107.8 L19.9 -61.2 L51.1 -96.1 M22.7 -16.5 L52.1 -37.8 M75.6 -78.3 L52.1 -37.8 L97.8 -47.7" className="pw-spokes" strokeWidth="8.8" />
+            <circle r="113.5" className="pw-lip" strokeWidth="5.9" />
+            <circle r="28.1" className="pw-hub" />
+            <circle cx="0.0" cy="-17.6" r="3.5" className="pw-bolt" />
+            <circle cx="16.7" cy="-5.4" r="3.5" className="pw-bolt" />
+            <circle cx="10.3" cy="14.2" r="3.5" className="pw-bolt" />
+            <circle cx="-10.3" cy="14.2" r="3.5" className="pw-bolt" />
+            <circle cx="-16.7" cy="-5.4" r="3.5" className="pw-bolt" />
+            <circle r="9.4" className="pw-cap" />
+          </g>
+        </g>
       </svg>
     </div>
   );

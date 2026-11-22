@@ -1310,7 +1310,7 @@ footer {
 .porsche-drive {
   width: min(250px, 62%);
   /* rodas encostadas no topo do selo */
-  margin-bottom: -3px;
+  margin-bottom: -1px;
   position: relative;
   z-index: 1;
   animation: porsche-arrive 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
@@ -1323,12 +1323,29 @@ footer {
   color: var(--racing-yellow);
 }
 
-.porsche-wheel {
-  fill: #2b2d33;
+/* Rodas em cinza bem escuro, no estilo dos aros de 10 raios duplos com pinça vermelha */
+.pw-tyre { fill: #141518; }
+.pw-barrel { fill: #1c1d21; }
+.pw-disc { fill: #26272c; }
+.pw-caliper { fill: none; stroke: #d3202b; stroke-linecap: round; }
+.pw-spokes { fill: none; stroke: #4a4d55; stroke-linecap: round; stroke-linejoin: round; }
+.pw-lip { fill: none; stroke: #3b3d44; }
+.pw-hub { fill: #34363c; }
+.pw-bolt { fill: #5b5e66; }
+.pw-cap { fill: #1c1d21; stroke: #5b5e66; stroke-width: 3; }
+
+.porsche-taillight { fill: #e0262b; }
+
+/* rodas girando enquanto o carro chega (indo para a esquerda: sentido anti-horário) */
+.pw-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pw-roll 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
 }
 
-.theme-dark .porsche-wheel {
-  fill: #3c3f47;
+@keyframes pw-roll {
+  from { transform: rotate(1080deg); }
+  to { transform: rotate(0deg); }
 }
 
 .porsche-drive:hover {
