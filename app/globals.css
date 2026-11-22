@@ -826,11 +826,6 @@ footer {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mc-cloud {
-    animation: none;
-  }
-}
 
 /* Nubank Tab */
 .theme-dark.tab-nubank {
@@ -1086,10 +1081,6 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nu-watermark {
-    animation: none;
-  }
-
   .nu-orb {
     animation: none;
   }
