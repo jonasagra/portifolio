@@ -1334,7 +1334,8 @@ footer {
 .pw-bolt { fill: #5b5e66; }
 .pw-cap { fill: #1c1d21; stroke: #5b5e66; stroke-width: 3; }
 
-.porsche-lightbar { fill: none; stroke: #e0262b; stroke-width: 10; stroke-linecap: round; }
+.porsche-taillight-housing { fill: #1b1c20; }
+.porsche-taillight-led { fill: none; stroke: #ff2a2f; stroke-width: 5; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(255, 42, 47, 0.8)); }
 
 /* rodas girando enquanto o carro chega (indo para a esquerda: sentido anti-horário) */
 .pw-spin {
