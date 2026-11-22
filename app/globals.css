@@ -1132,13 +1132,30 @@ footer {
   45% { transform: scale(1.12); }
 }
 
-/* Minecraft: mensagem de chat (fundo escuro translúcido, texto amarelo com sombra) */
+.love-counter {
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-subtle);
+}
+
+/* Minecraft: mensagens de chat (fundo escuro translúcido, texto com sombra) */
 .love-minecraft {
-  padding: 0.4rem 0.65rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.45rem 0.65rem;
   background: rgba(0, 0, 0, 0.5);
   color: #ffff55;
   text-shadow: 2px 2px 0 #3f3f15;
   font-size: 0.78rem;
+}
+
+.love-minecraft p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
 }
 
 .love-minecraft .love-icon {
@@ -1146,32 +1163,138 @@ footer {
   height: 16px;
 }
 
-/* Nubank: pílula com aliança roxa e texto em ExtraBold */
+.love-minecraft-day {
+  color: #e0e0e0;
+  text-shadow: 2px 2px 0 #383838;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nubank: cartão adicional da Ana em 3D + contador */
 .love-nubank {
-  padding: 0.45rem 0.9rem 0.45rem 0.7rem;
-  border-radius: 9999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0.4rem 0 0.2rem;
+}
+
+.nu-card-scene {
+  perspective: 900px;
+  padding: 0.5rem 1rem 1.25rem;
+  animation: nu-card-float 6s ease-in-out infinite;
+}
+
+@keyframes nu-card-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.nu-card3d {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  width: min(280px, 78vw);
+  aspect-ratio: 85.6 / 54;
+  border-radius: 16px;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(120% 90% at 15% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, #a23cf2 0%, #8d0de3 40%, #6a07a8 100%);
+  transform: rotateX(calc(12deg + var(--rx))) rotateY(calc(-14deg + var(--ry)));
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+    0 2px 0 #5a0690,
+    0 4px 0 #4c0679,
+    0 24px 40px -12px rgba(76, 6, 121, 0.75);
+}
+
+.nu-card3d.is-tilting {
+  transition: transform 0.08s linear;
+}
+
+/* brilho que acompanha a inclinação */
+.nu-card3d-shine {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.28), transparent 45%);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.nu-card3d-logo {
+  position: absolute;
+  top: 9%;
+  left: 7%;
+  width: 18%;
+  filter: brightness(0) invert(1);
+}
+
+.nu-card3d-heart {
+  position: absolute;
+  top: 9%;
+  right: 7%;
+  width: 9%;
+  height: auto;
+  color: #ffd1e6;
+}
+
+.nu-card3d-chip {
+  position: absolute;
+  top: 38%;
+  left: 7%;
+  width: 14%;
+  aspect-ratio: 1.3;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #e9e3f0, #b9aecb 50%, #f3eef8);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.nu-card3d-contactless {
+  position: absolute;
+  top: 38%;
+  left: 25%;
+  width: 9%;
+  height: auto;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.nu-card3d-holder {
+  position: absolute;
+  left: 7%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.nu-card3d-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+}
+
+.nu-card3d-name {
+  font-size: 1.05rem;
   font-weight: 800;
+  letter-spacing: 0.18em;
 }
 
-.theme-dark .love-nubank {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f6edff;
+.love-nubank-since {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
 }
 
-.theme-light .love-nubank {
-  background: #ffffff;
-  color: var(--nu-ink);
-  box-shadow: 0 6px 18px -10px rgba(130, 10, 209, 0.6);
-}
-
-.love-nubank .love-icon {
-  width: 16px;
-  height: 16px;
-  color: #b45cf0;
-}
-
-.theme-light .love-nubank .love-icon {
-  color: var(--nu-purple);
+.love-nubank-since strong {
+  font-weight: 800;
+  color: var(--fg);
 }
 
 /* Footer */
