@@ -1324,15 +1324,16 @@ footer {
 }
 
 /* Rodas em cinza bem escuro, no estilo dos aros de 10 raios duplos com pinça vermelha */
-.pw-tyre { fill: #141518; }
-.pw-barrel { fill: #1c1d21; }
-.pw-disc { fill: #26272c; }
+/* rodas em tons de amarelo/dourado, mais escuros que a carroceria; a pinça continua vermelha */
+.pw-tyre { fill: #6b5300; }
+.pw-barrel { fill: #8f6f00; }
+.pw-disc { fill: #a07d00; }
 .pw-caliper { fill: none; stroke: #d3202b; stroke-linecap: round; }
-.pw-spokes { fill: none; stroke: #4a4d55; stroke-linecap: round; stroke-linejoin: round; }
-.pw-lip { fill: none; stroke: #3b3d44; }
-.pw-hub { fill: #34363c; }
-.pw-bolt { fill: #5b5e66; }
-.pw-cap { fill: #1c1d21; stroke: #5b5e66; stroke-width: 3; }
+.pw-spokes { fill: none; stroke: #ffd84a; stroke-linecap: round; stroke-linejoin: round; }
+.pw-lip { fill: none; stroke: #ffd84a; }
+.pw-hub { fill: #c99f00; }
+.pw-bolt { fill: #ffe680; }
+.pw-cap { fill: #8f6f00; stroke: #ffe680; stroke-width: 3; }
 
 .porsche-taillight-lens { fill: #141519; }
 .porsche-taillight-led { fill: none; stroke: #ff2d3a; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(255, 45, 58, 0.9)); }
