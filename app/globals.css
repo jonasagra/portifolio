@@ -392,9 +392,8 @@ body {
 .summary {
   font-size: clamp(0.95rem, 1vw, 1.05rem);
   line-height: 1.65;
-  justify-content: center;
   color: var(--fg-muted);
-  display:flex;
+  display: block;
   text-align: center;
 }
 
@@ -488,6 +487,599 @@ body {
   transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
+
+/* Tab Switcher */
+.tab-switcher {
+  display: inline-flex;
+  align-self: center;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 3;
+}
+
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.55;
+  filter: grayscale(60%);
+  transition: background-color 0.2s ease, opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.tab-button:hover {
+  opacity: 0.9;
+  filter: none;
+}
+
+.tab-button.is-active {
+  background: var(--bg-subtle);
+  opacity: 1;
+  filter: none;
+}
+
+.tab-button:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.tab-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  object-fit: contain;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+}
+
+.tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: tab-fade-in 0.35s ease-out both;
+}
+
+@keyframes tab-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-panel {
+    animation: none;
+  }
+}
+
+/* Layering: decorative backgrounds sit behind content */
+.topbar,
+.hero,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Minecraft Tab */
+.tab-minecraft {
+  font-family: var(--font-minecraft), var(--font-sans);
+  background-color: #5c3f28;
+  --mc-text: #ffffff;
+  --mc-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
+  --border-subtle: rgba(255, 255, 255, 0.25);
+}
+
+.theme-dark.tab-minecraft {
+  --bg-elevated: rgba(9, 9, 11, 0.55);
+  --bg-subtle: #4f8a2c;
+}
+
+.theme-light.tab-minecraft {
+  --bg-elevated: rgba(255, 255, 255, 0.7);
+  --bg-subtle: #7ec850;
+}
+
+.mc-world {
+  /* faixa do chão: 936px na origem (80 px de arte); pedra: 1200px (160 px de arte) — mesmo tamanho de pixel */
+  --strip: 480px;
+  --stone: calc(var(--strip) * 2);
+  --grass-line: calc(var(--strip) * 0.205);
+  --strip-top: calc(var(--horizon, 600px) - var(--grass-line));
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: #58b5fe;
+}
+
+.theme-dark .mc-world {
+  background-color: #0e1d28;
+}
+
+.mc-sky,
+.mc-ground,
+.mc-stone {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+/* Céu acima da faixa: cor igual ao topo da imagem; estrelas à noite */
+.mc-sky {
+  top: 0;
+  height: var(--strip-top);
+}
+
+.theme-dark .mc-sky {
+  background: url("/minecraft/stars.png") repeat left top / 380px 260px;
+}
+
+.mc-ground {
+  top: var(--strip-top);
+  height: var(--strip);
+  background: url("/minecraft/ground-day.webp") repeat-x left top / var(--strip) var(--strip);
+  image-rendering: pixelated;
+}
+
+.theme-dark .mc-ground {
+  background-image: url("/minecraft/ground-night.webp");
+}
+
+.mc-stone {
+  top: calc(var(--strip-top) + var(--strip) - 1px);
+  bottom: 0;
+  background: url("/minecraft/stone-day.webp") repeat left top / var(--stone) var(--stone);
+  image-rendering: pixelated;
+}
+
+.theme-dark .mc-stone {
+  background-image: url("/minecraft/stone-night.webp");
+}
+
+/* Sol, lua e nuvens em blocos, só na área do céu (acima da grama) */
+.mc-cloud-layer {
+  --cpx: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: calc(var(--horizon, 600px) - 24px);
+  overflow: hidden;
+}
+
+.mc-celestial {
+  position: absolute;
+  top: -12px;
+  right: calc(10% - 80px);
+  width: 288px;
+  height: 288px;
+  image-rendering: pixelated;
+}
+
+.mc-celestial.is-moon {
+  width: 72px;
+  height: 72px;
+  top: 96px;
+  right: calc(10% + 28px);
+  filter: drop-shadow(0 0 24px rgba(200, 215, 255, 0.35));
+}
+
+.mc-cloud {
+  position: absolute;
+  left: 0;
+  width: calc(var(--cw) * var(--cpx));
+  height: auto;
+  image-rendering: pixelated;
+  animation: mc-cloud-drift linear infinite;
+  will-change: transform;
+}
+
+.theme-dark .mc-cloud {
+  filter: brightness(0.38) saturate(0.6);
+  opacity: 0.55;
+}
+
+@keyframes mc-cloud-drift {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(100vw); }
+}
+
+.tab-minecraft .hero-title,
+.tab-minecraft .summary,
+.tab-minecraft .badge .intro {
+  color: var(--mc-text);
+  text-shadow: var(--mc-shadow);
+}
+
+/* Monocraft é larga: ajusta tamanhos para caber igual às outras abas */
+.tab-minecraft .hero-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  letter-spacing: 0;
+}
+
+.tab-minecraft .summary {
+  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+  line-height: 1.8;
+}
+
+.tab-minecraft .badge .intro {
+  font-style: normal;
+  font-size: 0.8rem;
+}
+
+.tab-minecraft .theme-toggle,
+.tab-minecraft footer {
+  font-size: 0.8rem;
+}
+
+.tab-minecraft .social-icon {
+  color: var(--mc-text);
+  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.55));
+}
+
+.wiki-edits {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.tab-minecraft .social-link:hover .social-icon {
+  transform: translateY(-2px);
+}
+
+.hero-photo-skin {
+  --skin-w: min(420px, 85%);
+  --logo-h: calc(min(560px, 100%) * 0.1745);
+  overflow: visible;
+  border-radius: 0;
+  /* corta as pernas (28% de baixo) e o logo cobre a cintura, como a foto na aba principal */
+  margin-bottom: calc(-1 * (0.28 * var(--skin-w) + 0.87 * var(--logo-h)));
+}
+
+.hero-photo-skin::after {
+  display: none;
+}
+
+.hero-skin {
+  width: min(420px, 85%);
+  clip-path: inset(-80px -80px 28% -80px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45));
+}
+
+.hero-logo-corelakes {
+  width: min(560px, 100%);
+  height: auto;
+  align-self: center;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.theme-dark .hero-logo-corelakes {
+  filter: drop-shadow(0 0 1.5px rgba(255, 236, 170, 0.55)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+}
+
+.tab-minecraft footer {
+  color: #e4e4e7;
+  background: rgba(0, 0, 0, 0.45);
+  max-width: none;
+  padding-left: max(2.9rem, calc((100% - 1200px) / 2 + 2.9rem));
+  padding-right: max(2.9rem, calc((100% - 1200px) / 2 + 2.9rem));
+}
+
+@media (max-width: 640px) {
+  .mc-world {
+    --strip: 360px;
+  }
+
+  .mc-cloud-layer {
+    --cpx: 5px;
+  }
+
+  .mc-celestial {
+    width: 192px;
+    height: 192px;
+    top: 12px;
+    right: calc(4% - 52px);
+  }
+
+  .mc-celestial.is-moon {
+    width: 48px;
+    height: 48px;
+    top: 84px;
+    right: calc(4% + 20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-cloud {
+    animation: none;
+  }
+}
+
+/* Nubank Tab */
+.theme-dark.tab-nubank {
+  --bg: #12021f;
+  --photo-fade: #12021f;
+  --bg-elevated: rgba(46, 10, 76, 0.65);
+  --bg-subtle: #820ad1;
+  --fg: #f6edff;
+  --fg-muted: #dcc5f3;
+  --fg-subtle: #a98bc8;
+  --border: rgba(186, 104, 255, 0.28);
+  --border-subtle: rgba(186, 104, 255, 0.2);
+  --nu-logo-fill: linear-gradient(135deg, #f1e4ff 0%, #c084fc 45%, #9d2fe6 100%);
+  --nu-orb-opacity: 0.55;
+  --nu-dot: rgba(186, 104, 255, 0.22);
+  --nu-watermark-opacity: 0.07;
+}
+
+.theme-light.tab-nubank {
+  --bg: #f8f1ff;
+  --photo-fade: #f8f1ff;
+  --bg-elevated: rgba(255, 255, 255, 0.75);
+  --bg-subtle: #820ad1;
+  --fg: #26063f;
+  --fg-muted: #4a1a70;
+  --fg-subtle: #7d5a9c;
+  --border: rgba(130, 10, 209, 0.2);
+  --border-subtle: rgba(130, 10, 209, 0.15);
+  --nu-logo-fill: linear-gradient(135deg, #b45cf0 0%, #820ad1 50%, #4c0677 100%);
+  --nu-orb-opacity: 0.3;
+  --nu-dot: rgba(130, 10, 209, 0.14);
+  --nu-watermark-opacity: 0.06;
+}
+
+.tab-nubank .theme-toggle,
+.tab-nubank .badge .intro {
+  color: #ffffff;
+}
+
+.tab-nubank .tab-button-nubank.is-active {
+  background: #ffffff;
+}
+
+.tab-nubank .social-link:hover .social-icon {
+  color: #b45cf0;
+  transform: translateY(-2px);
+}
+
+.nu-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nu-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9d2fe6 0%, rgba(130, 10, 209, 0) 70%);
+  opacity: var(--nu-orb-opacity);
+  filter: blur(20px);
+  animation: nu-float 14s ease-in-out infinite alternate;
+}
+
+.nu-orb-1 { width: 560px; height: 560px; top: -180px; left: -200px; }
+.nu-orb-2 { width: 620px; height: 620px; top: 38%; right: -280px; animation-delay: -5s; }
+.nu-orb-3 { width: 460px; height: 460px; bottom: -120px; left: 8%; animation-delay: -9s; }
+
+@keyframes nu-float {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(40px, -30px) scale(1.08); }
+}
+
+.nu-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--nu-dot) 1.2px, transparent 1.6px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+
+/* Logos "nu" atravessando o fundo na diagonal (de baixo à esquerda para cima à direita) e recomeçando */
+.nu-watermark {
+  position: absolute;
+  left: -35%;
+  top: 100%;
+  opacity: var(--nu-watermark-opacity);
+  animation: nu-drift linear infinite;
+  will-change: left, top;
+}
+
+/* mesma duração e atrasos em terços: andam juntos no mesmo ritmo, sempre separados */
+.nu-watermark-1 { width: 380px; transform: rotate(-12deg); animation-duration: 75s; animation-delay: -10s; }
+.nu-watermark-2 { width: 300px; transform: rotate(10deg); animation-duration: 75s; animation-delay: -35s; }
+.nu-watermark-3 { width: 340px; transform: rotate(-4deg); animation-duration: 75s; animation-delay: -60s; }
+
+@keyframes nu-drift {
+  from { left: -35%; top: 100%; }
+  to { left: 110%; top: -25%; }
+}
+
+.nu-logo {
+  width: 100%;
+  aspect-ratio: 1920 / 1080;
+  background: var(--nu-logo-fill);
+  -webkit-mask: url("/logo_dark.svg") center / contain no-repeat;
+  mask: url("/logo_dark.svg") center / contain no-repeat;
+}
+
+/* Elementos no estilo do nubank.com.br: títulos 600 com letras juntas, pílulas, blocos roxos */
+.tab-nubank {
+  font-family: var(--font-nubank), var(--font-sans);
+  --nu-purple: #820ad1;
+  --nu-purple-bright: #8d0de3;
+  --nu-ink: #1e002f;
+}
+
+.tab-nubank .hero-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.theme-light.tab-nubank .hero-title {
+  color: var(--nu-purple-bright);
+}
+
+.tab-nubank .summary {
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  font-weight: 500;
+}
+
+.tab-nubank .badge {
+  background: var(--nu-purple);
+  padding: 0.55rem 1.1rem;
+}
+
+.tab-nubank .badge .intro {
+  font-style: normal;
+  font-weight: 800;
+}
+
+.tab-nubank .theme-toggle {
+  background: var(--nu-purple);
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.nu-block {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 0.75rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border-radius: 28px;
+  background: var(--nu-purple-bright);
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 30px 60px -30px rgba(130, 10, 209, 0.7);
+}
+
+.nu-block-head {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 2.5vw, 1.25rem);
+  margin-bottom: 0.35rem;
+}
+
+.nu-block-logo {
+  display: block;
+  height: clamp(30px, 5vw, 40px);
+  width: auto;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+}
+
+.nu-block-logo-aec {
+  filter: none;
+  height: clamp(32px, 5.3vw, 42px);
+}
+
+.nu-block-divider {
+  width: 2px;
+  height: clamp(30px, 5vw, 42px);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.nu-block-eyebrow {
+  margin: 0;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.nu-block-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.nu-block-text {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.nu-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.25rem 0.85rem 1.6rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: var(--nu-purple);
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nu-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -10px rgba(30, 0, 47, 0.6);
+}
+
+.nu-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.nu-button-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .nu-watermark-1 { width: 260px; }
+  .nu-watermark-2 { width: 200px; }
+  .nu-watermark-3 { width: 150px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nu-watermark {
+    animation: none;
+  }
+
+  .nu-orb {
+    animation: none;
+  }
+}
 
 /* Footer */
 footer {
