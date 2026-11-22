@@ -121,14 +121,14 @@ export function Love({ variant }: { variant: "main" | "minecraft" | "nubank" }) 
   const elapsed = useElapsed();
 
   if (variant === "minecraft") {
-    // Mensagens de chat: entrada da Ana e o "dia" do mundo (dia 1 = 9 de novembro)
+    // Mensagens de chat: entrada da Ana e o tempo juntos (mesma contagem das outras abas)
     return (
       <div className="love love-minecraft" aria-live="off">
         <p>
           <PixelHeart />
           <span>Ana joined the game</span>
         </p>
-        <p className="love-minecraft-day">{elapsed ? `Day ${elapsed.days + 1} · ${clock(elapsed)}` : "Day 1"}</p>
+        <p className="love-minecraft-day">{elapsed ? `Together for ${elapsed.days}d ${clock(elapsed)}` : "\u00a0"}</p>
       </div>
     );
   }
