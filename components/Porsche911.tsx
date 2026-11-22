@@ -22,13 +22,12 @@ export function Porsche911() {
         <path d={PATHS[0]} fill="currentColor" />
         <path d={PATHS[1]} fill="currentColor" />
         {/* o desenho veio com a lanterna do 991; o recorte é fechado na cor da carroceria e entra a faixa de LED
-            do 992: peça escura e fina em cunha (mais larga na ponta da traseira) com o LED vermelho por dentro */}
+            do 992: faixa fina e contínua logo abaixo da tampa do motor, levemente inclinada para cima rumo à traseira */}
         <path d={TAILLIGHT} fill="currentColor" stroke="currentColor" strokeWidth="4" />
-        <path
-          d="M1700 470 C1760 465 1828 460 1874 456 L1883 464 C1887 472 1886 480 1881 487 C1830 485 1764 478 1700 471 Z"
-          className="porsche-taillight-housing"
-        />
-        <path d="M1722 471 C1784 473 1838 476 1878 480" className="porsche-taillight-led" />
+        {/* faixa preta ("pagoda") embaixo, LED vermelho contínuo por cima e aletas na quina da traseira */}
+        <path d="M1726 482 C1792 480 1846 476 1880 471" className="porsche-taillight-pagoda" />
+        <path d="M1728 475.5 C1794 473.5 1848 469.5 1881 464" className="porsche-taillight-led" />
+        <path d="M1858 468.5 v11 M1865 467.5 v11 M1872 466.5 v11" className="porsche-taillight-gills" />
         <clipPath id="wheel-well-0"><circle cx="410.6" cy="681.0" r="150" /></clipPath>
         <circle cx="410.6" cy="671.0" r="156" clipPath="url(#wheel-well-0)" className="pw-tyre" />
         <g transform="translate(410.6 679.0)">
