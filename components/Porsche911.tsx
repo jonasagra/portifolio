@@ -8,7 +8,7 @@ const PATHS = [
   "M1473.52,554.78c20.64-2.54,41.58,2.73,60.15,11.58c28.09,13.52,49.2799,39.48,58.6899,69 c5.83,19.58,6.63,40.54,3.05,60.62c-3.6801,20.53-12.51,40.37-26.61,55.87c-15.74,17.52-37.7301,28.52-60.6101,33.26 c-11.5199,2.74-23.47,2.68-35.22,2.02c-20.73-1.38-41.4399-7.45-58.5499-19.46c-18.0601-12.48-31.4-30.83-40.2201-50.75 c-4.37-10.06-8.58-20.42-9.3999-31.47c-3.1801-35.78,8.34-73.89,34.7-99.02C1419.3101,567.29,1446.48,557.54,1473.52,554.78z",
 ];
 
-// Lanterna traseira (recorte do próprio desenho), pintada de vermelho
+// Recorte da lanterna antiga (991) no desenho original
 const TAILLIGHT = "M1827.15,483.7c-24.9,2.68-49.78,5.63-74.65,8.54 c-23.24,2.56-46.4301,5.78-69.72,7.59c-1.02,0.51-1.9,1.2-2.64,2.05c2.86,4.15,7.89,5.67,12.13,7.98 c15.85,7.42,33.02,13.44,50.76,12.88c38.01,0.15,76-1.26,114-1.69c1.84-0.12,4.37,0.04,5.23-2.06c0.67-2.14-0.23-4.34-0.7-6.41 c-3.01-10.82-8.0701-20.93-13.88-30.48C1840.8,482.12,1833.98,483.06,1827.15,483.7";
 
 // Fica "estacionado" em cima do selo da aba principal. O recorte (viewBox) termina na base do carro para as rodas
@@ -21,7 +21,10 @@ export function Porsche911() {
       <svg className="porsche-svg" viewBox="10 250 1900 578" role="img" aria-label="Porsche 911 Carrera S, o carro favorito do Jonas">
         <path d={PATHS[0]} fill="currentColor" />
         <path d={PATHS[1]} fill="currentColor" />
-        <path d={TAILLIGHT} className="porsche-taillight" />
+        {/* o desenho veio com a lanterna do 991; o recorte é fechado na cor da carroceria e entra a faixa de LED
+            fina do 992, que de lado aparece como uma linha logo abaixo da tampa do motor */}
+        <path d={TAILLIGHT} fill="currentColor" stroke="currentColor" strokeWidth="4" />
+        <path d="M1712 472 C1776 471 1832 469 1866 466" className="porsche-lightbar" />
         <clipPath id="wheel-well-0"><circle cx="410.6" cy="681.0" r="150" /></clipPath>
         <circle cx="410.6" cy="671.0" r="156" clipPath="url(#wheel-well-0)" className="pw-tyre" />
         <g transform="translate(410.6 679.0)">
