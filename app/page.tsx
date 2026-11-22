@@ -5,7 +5,7 @@ import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/so
 import { ChevronRight, MapPin, Moon, Sun } from "lucide-react";
 import { TechMarquee } from "@/components/TechMarquee";
 import { Love } from "@/components/Love";
-import { Porsche911 } from "@/components/Porsche911";
+import { Porsche911, PorscheName } from "@/components/Porsche911";
 import { minecraftFont } from "./fonts/minecraft";
 import { nubankFont } from "./fonts/nubank";
 import { porscheFont } from "./fonts/porsche";
@@ -258,8 +258,12 @@ export default function Page() {
                   )}
                 </div>
                 <img className={`hero-logo ${isLoading ? "logo-loading" : "logo-ready"}`} src={isDark ? "/logo_dark.svg" : "/logo_light.svg"} alt="Jonas Agra" />
-                <div className="badge">
-                  <p className="intro">QA Student • Web Developer • JavaScript &amp; React</p>
+                <div className="badge-parking">
+                  <Porsche911 />
+                  <div className="badge">
+                    <p className="intro">QA Student • Web Developer • JavaScript &amp; React</p>
+                  </div>
+                  <PorscheName />
                 </div>
                 <Love variant="main" />
                 <div className="separator"></div>
@@ -273,8 +277,6 @@ export default function Page() {
                     </a>
                   ))}
                 </div>
-                <div className="separator"></div>
-                <Porsche911 />
                 <div className="separator"></div>
                 <TechMarquee />
               </>
