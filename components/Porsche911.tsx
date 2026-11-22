@@ -36,7 +36,7 @@ export function Porsche911() {
         <g clipPath="url(#body-outline-clip)">
           <path d={TAILLIGHT_992} className="porsche-taillight-lens" />
           <g clipPath="url(#taillight-clip)">
-            <path d="M1683 502.5 L1960 472" className="porsche-taillight-led" />
+            <path d="M1690 508 L1960 478.5" className="porsche-taillight-led" />
             <path d="M1712 515 Q1790 518.5 1960 516" className="porsche-taillight-glint" />
           </g>
         </g>
