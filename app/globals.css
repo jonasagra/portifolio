@@ -920,11 +920,6 @@ footer {
   to { left: 110%; top: -25%; }
 }
 
-/* Foto levemente roxa (filtro SVG #nu-duotone definido na página) */
-.nu-photo {
-  filter: url(#nu-duotone);
-}
-
 .nu-logo {
   width: 100%;
   aspect-ratio: 1920 / 1080;

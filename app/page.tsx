@@ -147,18 +147,6 @@ export default function Page() {
           <img src="/nubank/nubank-logo.svg" alt="" className="nu-watermark nu-watermark-1" />
           <img src="/nubank/nubank-logo.svg" alt="" className="nu-watermark nu-watermark-2" />
           <img src="/nubank/nubank-logo.svg" alt="" className="nu-watermark nu-watermark-3" />
-          {/* Filtro duotone roxo para a foto (sombras roxo-escuro, luzes lilás), misturado 75% com a foto original */}
-          <svg width="0" height="0" style={{ position: "absolute" }}>
-            <filter id="nu-duotone" colorInterpolationFilters="sRGB">
-              <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0" result="gray" />
-              <feComponentTransfer in="gray" result="duo">
-                <feFuncR type="table" tableValues="0.10 0.553 0.957" />
-                <feFuncG type="table" tableValues="0.012 0.051 0.91" />
-                <feFuncB type="table" tableValues="0.19 0.89 1" />
-              </feComponentTransfer>
-              <feComposite in="duo" in2="SourceGraphic" operator="arithmetic" k1="0" k2="0.75" k3="0.25" k4="0" />
-            </filter>
-          </svg>
         </div>
       )}
 
@@ -221,7 +209,7 @@ export default function Page() {
             {activeTab === "nubank" && (
               <>
                 <div className="hero-photo">
-                  <img src={isDark ? "photo.png" : "photo_light.png"} alt="Foto de Jonas Agra" className="hero-image nu-photo" />
+                  <img src={isDark ? "photo.png" : "photo_light.png"} alt="Foto de Jonas Agra" className="hero-image" />
                 </div>
                 <div className={`hero-logo nu-logo ${isLoading ? "logo-loading" : "logo-ready"}`} role="img" aria-label="Jonas Agra" />
                 <div className="badge">
