@@ -13,7 +13,8 @@ const TAILLIGHT = "M1827.15,483.7c-24.9,2.68-49.78,5.63-74.65,8.54 c-23.24,2.56-
 
 // Fica "estacionado" em cima do selo da aba principal. O recorte (viewBox) termina na base do carro para as rodas
 // encostarem no selo. As rodas são desenhadas por cima: pneu escuro até o chão (o para-lama cobre o topo),
-// aro de 10 raios em Y e pinça de freio vermelha.
+// aro de 10 raios em Y e pinça de freio vermelha. O aro fica 8 unidades abaixo do centro do pneu para ficar
+// centralizado na parte visível dele (o topo do pneu fica escondido pelo para-lama).
 export function Porsche911() {
   return (
     <div className="porsche-drive">
@@ -23,7 +24,7 @@ export function Porsche911() {
         <path d={TAILLIGHT} className="porsche-taillight" />
         <clipPath id="wheel-well-0"><circle cx="410.6" cy="681.0" r="150" /></clipPath>
         <circle cx="410.6" cy="671.0" r="156" clipPath="url(#wheel-well-0)" className="pw-tyre" />
-        <g transform="translate(410.6 671.0)">
+        <g transform="translate(410.6 679.0)">
           <circle r="117.0" className="pw-barrel" />
           <circle r="91.3" className="pw-disc" />
           <path d="M-66.9 -38.6 A77.2 77.2 0 0 1 -13.4 -76.0" className="pw-caliper" strokeWidth="28.1" />
@@ -41,7 +42,7 @@ export function Porsche911() {
         </g>
         <clipPath id="wheel-well-1"><circle cx="1480.3" cy="681.1" r="150" /></clipPath>
         <circle cx="1480.3" cy="671.1" r="156" clipPath="url(#wheel-well-1)" className="pw-tyre" />
-        <g transform="translate(1480.3 671.1)">
+        <g transform="translate(1480.3 679.1)">
           <circle r="117.0" className="pw-barrel" />
           <circle r="91.3" className="pw-disc" />
           <path d="M-66.9 -38.6 A77.2 77.2 0 0 1 -13.4 -76.0" className="pw-caliper" strokeWidth="28.1" />
