@@ -209,7 +209,7 @@ export default function Page() {
             {activeTab === "nubank" && (
               <>
                 <div className="hero-photo">
-                  <img src="/nubank/photo.webp" alt="Foto de Jonas Agra com roupa de astronauta roxa" className="hero-image" />
+                  <img src={isDark ? "/nubank/photo-dark.webp" : "/nubank/photo-light.webp"} alt="Foto de Jonas Agra com roupa de astronauta roxa" className="hero-image" />
                 </div>
                 <div className={`hero-logo nu-logo ${isLoading ? "logo-loading" : "logo-ready"}`} role="img" aria-label="Jonas Agra" />
                 <div className="badge">
