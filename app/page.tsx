@@ -268,7 +268,18 @@ export default function Page() {
                 <Love variant="main" />
                 <div className="separator"></div>
                 <h1 className="hero-title">About Me</h1>
-                <p className="summary">I&apos;m a 26-year-old developer from João Pessoa, Brazil, moving into Quality Assurance. I already do manual testing and bug reporting with Jira, and I&apos;m learning Cypress and TypeScript. My strongest side is the web: JavaScript and React.</p>
+                <figure className="code-card">
+                  <figcaption className="code-card-bar">
+                    <span className="code-dot" />
+                    <span className="code-dot" />
+                    <span className="code-dot" />
+                    <span className="code-file">about-me.md</span>
+                  </figcaption>
+                  <p className="code-body">
+                    I&apos;m a 26-year-old developer from João Pessoa, Brazil, moving into Quality Assurance. I already do manual testing and bug reporting with Jira, and I&apos;m learning Cypress and TypeScript. My strongest side is the web: JavaScript and React.
+                    <span className="code-cursor" aria-hidden="true" />
+                  </p>
+                </figure>
                 <div className="separator"></div>
                 <div className="social-actions" role="navigation">
                   {Socials.map((social) => (
