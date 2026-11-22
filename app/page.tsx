@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Socials, MinecraftSocials, NubankSocials, LINKEDIN_URL } from "@/lib/socials";
 import { ChevronRight, MapPin, Moon, Sun } from "lucide-react";
+import { SiReact } from "react-icons/si";
 import { TechMarquee } from "@/components/TechMarquee";
 import { Love } from "@/components/Love";
 import { Porsche911, PorscheName } from "@/components/Porsche911";
@@ -273,7 +274,10 @@ export default function Page() {
                     <span className="code-dot" />
                     <span className="code-dot" />
                     <span className="code-dot" />
-                    <span className="code-file">about-me.md</span>
+                    <span className="code-file">
+                      <SiReact className="code-file-icon" aria-hidden="true" />
+                      AboutMe.jsx
+                    </span>
                   </figcaption>
                   <p className="code-body">
                     I&apos;m a 26-year-old developer from João Pessoa, Brazil, moving into Quality Assurance. I already do manual testing and bug reporting with Jira, and I&apos;m learning Cypress and TypeScript. My strongest side is the web: JavaScript and React.
