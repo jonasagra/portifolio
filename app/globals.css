@@ -1335,7 +1335,7 @@ footer {
 .pw-cap { fill: #1c1d21; stroke: #5b5e66; stroke-width: 3; }
 
 .porsche-taillight-lens { fill: #141519; }
-.porsche-taillight-led { fill: none; stroke: #ff2d3a; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(255, 45, 58, 0.9)); }
+.porsche-taillight-led { fill: none; stroke: #ff2d3a; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(255, 45, 58, 0.9)); }
 .porsche-taillight-glint { fill: none; stroke: #34363d; stroke-width: 2; stroke-linecap: round; }
 
 /* rodas girando enquanto o carro chega (indo para a esquerda: sentido anti-horário) */
